@@ -1,0 +1,18 @@
+#pragma once
+#include <SDL.h>
+#include <glm.hpp>
+#include "Game.h"
+
+class TransformComponent: public Component {
+public:
+	glm::vec2 position;
+	glm::vec2 velocity;
+	uint32_t width;
+	uint32_t height;
+	int scale;
+
+	TransformComponent(glm::vec2 position, glm::vec2 velocity, uint32_t w, uint32_t h, int scale);
+	void Initialize() override;
+	void Update(float deltaTime) override;
+	void Render() override;
+};

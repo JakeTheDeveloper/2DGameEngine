@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/2DGameEngine/v16
+/2DGameEngine/x64/Debug/2DGameEngine.tlog
+/x64/Debug
+/2DGameEngine/x64/Debug
