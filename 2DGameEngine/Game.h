@@ -6,7 +6,7 @@
 #include "Entity.h"
 #include "Component.h"
 #include "EntityManager.h"
-
+#include "AssetManager.h"
 // vvv Don't remove this otherwise SDL dies.
 #undef main
 
@@ -23,7 +23,7 @@ public:
 	
 	static SDL_Renderer* renderer;
 	static AssetManager* assetManager;
-
+	static SDL_Rect camera;
 	float deltaTime = 0.0f;
 	bool isRunning;
 	void LoadLevel(uint32_t levelNumber);
@@ -31,5 +31,7 @@ public:
     void ProcessInput();
 	void Update();
 	void Render();
+	void HandleCameraMovement();
+	void CheckCollisions();
 	void Destroy();
 };

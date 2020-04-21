@@ -5,13 +5,16 @@
 #include <vector>
 class EntityManager {
 private:
-	std::vector<Entity*> _entities;
 public:
+	std::vector<Entity*> entities;
 	void ClearData();
 	void Update(float deltaTime);
 	void Render();
 	bool HasNoEntities();
-	Entity& AddEntity(std::string entityName);
+	Entity& AddEntity(std::string entityName, LayerType layerType);
+	std::vector<Entity*> GetEntitiesByLayer(LayerType layerType) const;
 	std::vector<Entity*> GetEntities() const;
-	uint32_t GetEntityCount();
+	uint32_t GetEntityCount() const;
+	Entity& GetEntityByName(std::string name) const;
+	std::string CheckEntityCollisions(Entity& srcEntity) const;
 };

@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <map>
+#include "Constants.h"
 #include "./EntityManager.h"
 #include "./Component.h"
 
@@ -15,9 +16,10 @@ private:
 	std::map<const type_info*, Component*> componentTypeMap;
 public:
 	std::string Name;
+	LayerType layer;
 	bool IsActive;
 	Entity(EntityManager& manager);
-	Entity(EntityManager& manager, std::string name);
+	Entity(EntityManager& manager, std::string name, LayerType layerType);
 	void Update(float deltaTime);
 	void Render();
 	void Destroy();
@@ -34,6 +36,11 @@ public:
 		newComponent->Initialize();
 		
 		return *newComponent;
+	}
+
+	template <typename T>
+	bool HasComponent() const {
+		return componentTypeMap.count(&typeid(T));
 	}
 
 	template <typename T>
