@@ -14,4 +14,5 @@ public:
 	ColliderComponent(std::string tag, int posX, int posY, int width, int height);
 	void Initialize() override;
 	void Update(float deltaTime) override;
+	void Render() override;
 };

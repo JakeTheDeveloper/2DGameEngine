@@ -1,7 +1,7 @@
 #include "EntityManager.h"
 #include "Collision.h"
 #include "ColliderComponent.h"
-
+#include <iostream>
 void EntityManager::ClearData() {
 	for(auto& entity : entities) {
 		entity->Destroy();
@@ -47,19 +47,23 @@ Entity& EntityManager::GetEntityByName(std::string name) const {
 	}
 }
 
-std::string EntityManager::CheckEntityCollisions(Entity& srcEntity) const {
-	auto* myCollider = srcEntity.GetComponent<ColliderComponent>();
-	for (auto& entity : entities) {
-		if (entity->Name.compare(srcEntity.Name) != 0 && entity->Name.compare("Tile") != 0) {
-			if (entity->HasComponent<ColliderComponent>()) {
-				auto* entityCollider = entity->GetComponent<ColliderComponent>();
-				if (Collision::CheckRectangleCollision(myCollider->collider, entityCollider->collider)) {
-					return entityCollider->colliderTag;
+void EntityManager::CheckCollisions() {
+	ClearCollisionQueue();
+	for (auto& collidingEntity : entities) {
+		if (collidingEntity->HasComponent<TransformComponent>()) {
+			for (auto& collidedEntity : entities) {
+				if (collidedEntity->Name.compare(collidingEntity->Name) != 0 && collidedEntity->HasComponent<TransformComponent>()) {
+					if (Collision::CheckRectangleCollision(collidingEntity->GetComponent<ColliderComponent>()->collider, collidedEntity->GetComponent<ColliderComponent>()->collider)) {
+						collisionQueue.emplace_back(new CollisionEvent{ PLAYER_ENEMY_COLLISION, *collidingEntity, *collidedEntity });
+					}
 				}
 			}
 		}
 	}
-	return std::string();
+}
+
+void EntityManager::ClearCollisionQueue() {
+	collisionQueue.clear();
 }
 
 // TODO: Fix this 

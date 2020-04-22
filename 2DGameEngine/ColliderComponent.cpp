@@ -21,3 +21,15 @@ void ColliderComponent::Update(float deltaTime) {
 	dstRect.x = collider.x - Game::camera.x;
 	dstRect.y = collider.y - Game::camera.y;
 }
+
+void ColliderComponent::Render() {
+	auto texture = TextureManager::LoadTexture("../assets/images/collisiontexture.png");
+	auto transform = owner->GetComponent<TransformComponent>();
+	SDL_Rect srcRect = {0, 0, 32, 32}; // start at beginning of file, 32x32;
+	
+	SDL_Rect dstRect = { 
+		static_cast<int>(transform->position.x - Game::camera.x),
+		static_cast<int>(transform->position.y - Game::camera.y),
+		32, 32 };
+	TextureManager::Draw(texture, srcRect, dstRect, SDL_FLIP_NONE);
+}

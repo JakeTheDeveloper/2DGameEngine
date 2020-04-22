@@ -137,11 +137,11 @@ void Game::HandleCameraMovement() {
 }
 
 void Game::CheckCollisions() {
-	std::string collisionTagType = manager.CheckEntityCollisions(playerEntity);
-	if (collisionTagType.compare("enemy") == 0) {
-		// TODO: collision detected
-		std::cout << "Collided" << std::endl;
-	}
+	manager.CheckCollisions();
+	//if (collisionTagType.compare("enemy") == 0) {
+	//	// TODO: collision detected
+	//	std::cout << "Collided" << std::endl;
+	//}
 }
 
 void Game::Destroy() {

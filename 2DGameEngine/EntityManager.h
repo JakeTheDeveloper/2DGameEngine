@@ -2,10 +2,12 @@
 
 #include "./Entity.h"
 #include "./Component.h"
+#include "Collision.h"
 #include <vector>
 class EntityManager {
 private:
 public:
+	std::vector<CollisionEvent*> collisionQueue;
 	std::vector<Entity*> entities;
 	void ClearData();
 	void Update(float deltaTime);
@@ -16,5 +18,6 @@ public:
 	std::vector<Entity*> GetEntities() const;
 	uint32_t GetEntityCount() const;
 	Entity& GetEntityByName(std::string name) const;
-	std::string CheckEntityCollisions(Entity& srcEntity) const;
+	void CheckCollisions();
+	void ClearCollisionQueue();
 };
