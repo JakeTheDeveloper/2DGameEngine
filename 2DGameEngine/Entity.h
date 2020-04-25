@@ -5,7 +5,7 @@
 #include "Constants.h"
 #include "./EntityManager.h"
 #include "./Component.h"
-
+#include <math.h>
 class EntityManager;
 class Component;
 

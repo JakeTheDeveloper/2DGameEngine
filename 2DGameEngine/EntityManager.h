@@ -4,6 +4,7 @@
 #include "./Component.h"
 #include "Collision.h"
 #include <vector>
+#include "glm.hpp"
 class EntityManager {
 private:
 public:
@@ -18,6 +19,7 @@ public:
 	std::vector<Entity*> GetEntities() const;
 	uint32_t GetEntityCount() const;
 	Entity& GetEntityByName(std::string name) const;
+	void HandleCollisions();
 	void CheckCollisions();
 	void ClearCollisionQueue();
 };

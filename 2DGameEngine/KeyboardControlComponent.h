@@ -11,7 +11,7 @@ private:
 public:
 	TransformComponent* ownerTransform;
 	SpriteComponent* sprite;
-
+	
 	KeyboardControlComponent();
 	void Initialize() override;
 	void Update(float deltaTime) override;

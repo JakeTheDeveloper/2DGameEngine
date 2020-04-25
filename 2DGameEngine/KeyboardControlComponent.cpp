@@ -11,8 +11,33 @@ void KeyboardControlComponent::Initialize() {
 }
 
 void KeyboardControlComponent::Update(float deltaTime) {
-	ownerTransform->position.x += _xVel;
-	ownerTransform->position.y += _yVel;
+	if (_xVel == 0) {
+		ownerTransform->velocity.x = 0;
+	}
+
+	if (_yVel == 0) {
+		ownerTransform->velocity.y = 0;
+	}
+
+	if (_xVel > 50) {
+		_xVel = 50;
+	}
+	
+	if (_xVel < -50) {
+		_xVel = -50;
+	}
+
+	if (_yVel > 50) {
+		_yVel = 50;
+	}
+
+	if (_yVel < -50) {
+		_yVel = -50;
+	}
+
+	ownerTransform->velocity.x += _xVel;
+	ownerTransform->velocity.y += _yVel;
+
 }
 
 void KeyboardControlComponent::HandleInput(SDL_Event& sdlEvent) {
@@ -20,16 +45,16 @@ void KeyboardControlComponent::HandleInput(SDL_Event& sdlEvent) {
 	case SDL_KEYDOWN:
 		switch (sdlEvent.key.keysym.sym) {
 		case SDLK_w:
-			_yVel = -6;
+			_yVel = -6.f;
 			break;
 		case SDLK_a:
-			_xVel = -6;
+			_xVel = -6.f;
 			break;
 		case SDLK_s:
-			_yVel = 6;
+			_yVel = 6.f;
 			break;
 		case SDLK_d:
-			_xVel = 6;
+			_xVel = 6.f;
 			break;
 		default:
 			break;
