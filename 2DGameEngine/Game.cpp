@@ -53,7 +53,7 @@ void Game::Initialize(const int width, const int height) {
 
 void Game::LoadLevel(uint32_t level) {
 	auto& enemy = manager.AddEntity("enemy", PLAYER_LAYER);
-	assetManager->AddTexture("collision", "../assets/images/collisiontexture.png");
+	assetManager->AddTexture(COLLISION_TEXTURE_ID, "../assets/images/collisiontexture.png");
 
 	assetManager->AddTexture("player", std::string("../assets/images/AppleMan.png").c_str());
 	assetManager->AddTexture("enemy", std::string("../assets/images/Bigbox.png").c_str());
@@ -66,7 +66,6 @@ void Game::LoadLevel(uint32_t level) {
 
 	enemy.AddComponent<TransformComponent>(glm::vec2(1350.f, 850.f), glm::vec2(0.f, 0.f), 200, 200, 1);
 	enemy.AddComponent<SpriteComponent>("enemy", 1, 1.f, false, false);
-	// TODO: Collider is causing a mem leak :(
 	enemy.AddComponent<ColliderComponent>("enemy", 1350.f, 850.f, 200, 200);
 
 	terrain = new Terrain("jungle-tiletexture", 4, 32);

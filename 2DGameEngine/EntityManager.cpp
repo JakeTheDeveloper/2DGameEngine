@@ -63,6 +63,20 @@ void EntityManager::CheckCollisions() {
 		}
 	}
 }
+/*
+				 Box Collider Layout
+
+				Top Left   Top Right
+				________  _________
+				|                 |
+	  Left Top	|				  | Right Top
+				|				  |
+				
+				|				  |
+	  Left Bot.	|				  | Right Bot.
+				|_______  ________|
+				Bot. Left  Bot. Right
+*/
 
 void EntityManager::HandleCollisions() {
 	for (auto& ce : collisionQueue) {
@@ -71,74 +85,59 @@ void EntityManager::HandleCollisions() {
 			auto collidingComponent = ce->collidingEntity.GetComponent<TransformComponent>();
 			auto collidedComponent = ce->collidedEntity.GetComponent<TransformComponent>();
 
-			auto xDiff = collidingComponent->position.x - collidedComponent->position.x;
-			auto yDiff = collidingComponent->position.y - collidedComponent->position.y;
-
 			auto isRight = collidingComponent->position.x > collidedComponent->position.x + (collidedComponent->width / 2);
 			auto isLeft = collidingComponent->position.x < collidedComponent->position.x  + (collidedComponent->width / 2);
 			auto isUp = collidingComponent->position.y < collidedComponent->position.y + (collidedComponent->height / 2);
 			auto isDown = collidingComponent->position.y > collidedComponent->position.y + (collidedComponent->height / 2);
-
-			std::cout << "Is Right: " << isRight << std::endl;
-			std::cout << "Is Left: " << isLeft << std::endl;
-			std::cout << "Is Up: " << isUp << std::endl;
-			std::cout << "Is Down: " << isDown << std::endl << std::endl;
-
-			std::cout << "yDiff: " << yDiff << std::endl;
-			std::cout << "xDiff: " << xDiff << std::endl << std::endl;
-
 			
 			if (isDown && isRight) {
 				// Colliding along bottom right half of collider
-				if (yDiff > xDiff) {
-					collidingComponent->velocity.y = collidingComponent->velocity.y < 0 ? 0 : collidingComponent->velocity.y;
+				if (collidingComponent->position.y > collidedComponent->position.y + collidedComponent->height) {
+					collidingComponent->velocity.y = collidingComponent->velocity.y > 0 ? 0 : collidingComponent->velocity.y;
 				}
 				// Colliding along right bottom half of collider
-				if (xDiff > yDiff) {
+				if (collidingComponent->position.x > collidedComponent->position.x + collidedComponent->width) {
 					collidingComponent->velocity.x = collidingComponent->velocity.x < 0 ? 0 : collidingComponent->velocity.x;
 				}
+				break;
 			}
 			
 			if (isUp && isRight) {
-				if (xDiff > yDiff) {
-					//// Colliding along Right Top half of collider
-					if (collidingComponent->position.x > collidedComponent->position.x + collidedComponent->width) {
-						collidingComponent->velocity.x = collidingComponent->velocity.x < 0 ? 0 : collidingComponent->velocity.x;
-					}
-					// Colliding along Top Right half of collider
-					if (collidingComponent->position.y + collidingComponent->height - 5 < collidedComponent->position.y && collidingComponent->position.x < (collidedComponent->position.x + collidedComponent->width * 4)) {
-						collidingComponent->velocity.y = collidingComponent->velocity.y > 0 ? 0 : collidingComponent->velocity.y;
-					}
-				}
-
-				if (xDiff < yDiff) {
+				// Colliding along Right Top half of collider
+				if (collidingComponent->position.x > collidedComponent->position.x + collidedComponent->width) {
 					collidingComponent->velocity.x = collidingComponent->velocity.x < 0 ? 0 : collidingComponent->velocity.x;
 				}
+				// Colliding along Top Right half of collider
+				if (collidingComponent->position.y + collidingComponent->height - 5 < collidedComponent->position.y && collidingComponent->position.x < (collidedComponent->position.x + collidedComponent->width * 4)) {
+					collidingComponent->velocity.y = collidingComponent->velocity.y > 0 ? 0 : collidingComponent->velocity.y;
+				}
+				break;
 			}
 
 			if (isUp && isLeft) {
-				if (xDiff > yDiff) {
+				// Colliding along Top Left half of collider
+				if (collidingComponent->position.y + collidingComponent->height - 5 < collidedComponent->position.y && collidingComponent->position.x < (collidedComponent->position.x + collidedComponent->width / 2)) {
 					collidingComponent->velocity.y = collidingComponent->velocity.y > 0 ? 0 : collidingComponent->velocity.y;
 				}
 
-				if (xDiff < yDiff) {
+				// Colliding along Left Top half of collider
+				if (collidingComponent->position.x + collidingComponent->width < collidedComponent->position.x + 10 && collidingComponent->position.y + collidingComponent->height > collidedComponent->position.y) {
 					collidingComponent->velocity.x = collidingComponent->velocity.x > 0 ? 0 : collidingComponent->velocity.x;
 				}
+				break;
 			}
 
 			if (isDown && isLeft) {
 				// Colliding along left bottom half of collider
-				if (collidingComponent->position.y < collidedComponent->position.y + collidedComponent->width) {
+				if (collidingComponent->position.y < collidedComponent->position.y + collidedComponent->height) {
 					collidingComponent->velocity.x = collidingComponent->velocity.x > 0 ? 0 : collidingComponent->velocity.x;
 				}
 				// Colliding along bottom left half of collider
 				if (collidingComponent->position.y > collidedComponent->position.y + collidedComponent->height) {
 					collidingComponent->velocity.y = collidingComponent->velocity.y < 0 ? 0 : collidingComponent->velocity.y;
 				}
+				break;
 			}
-			
-			std::cout << "YDIFF:" << yDiff << std::endl;
-			std::cout << "XDIFF:" << xDiff << std::endl << std::endl;
 		}
 	}
 	ClearCollisionQueue();

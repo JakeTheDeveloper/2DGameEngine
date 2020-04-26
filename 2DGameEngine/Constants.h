@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 const uint32_t WINDOW_WIDTH = 1200;
 const uint32_t WINDOW_HEIGHT = 800;
@@ -22,3 +23,6 @@ enum LayerType {
 };
 
 const uint32_t NUM_LAYERS = 6;
+
+// external vs internal linkage here... Google dat.
+const char* const COLLISION_TEXTURE_ID = "collision";

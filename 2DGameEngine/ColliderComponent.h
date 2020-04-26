@@ -2,7 +2,6 @@
 #include "Game.h"
 #include "TransformComponent.h"
 #include "EntityManager.h"
-
 class ColliderComponent: public Component {
 public:
 	std::string colliderTag;
