@@ -23,7 +23,7 @@ void ColliderComponent::Update(float deltaTime) {
 }
 
 void ColliderComponent::Render() {
-	auto texture = TextureManager::LoadTexture("../assets/images/collisiontexture.png");
+	auto texture = Game::assetManager->GetTexture("collision");
 	auto transform = owner->GetComponent<TransformComponent>();
 	SDL_Rect srcRect = {0, 0, 32, 32}; // start at beginning of file, 32x32;
 	
