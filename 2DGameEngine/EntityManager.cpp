@@ -86,14 +86,14 @@ void EntityManager::HandleCollisions() {
 			auto collidedComponent = ce->collidedEntity.GetComponent<TransformComponent>();
 
 			auto isRight = collidingComponent->position.x > collidedComponent->position.x + (collidedComponent->width / 2);
-			auto isLeft = collidingComponent->position.x < collidedComponent->position.x  + (collidedComponent->width / 2);
 			auto isUp = collidingComponent->position.y < collidedComponent->position.y + (collidedComponent->height / 2);
-			auto isDown = collidingComponent->position.y > collidedComponent->position.y + (collidedComponent->height / 2);
+			auto isLeft = !isRight;
+			auto isDown = !isUp;;
 			
 			if (isDown && isRight) {
 				// Colliding along bottom right half of collider
 				if (collidingComponent->position.y > collidedComponent->position.y + collidedComponent->height) {
-					collidingComponent->velocity.y = collidingComponent->velocity.y > 0 ? 0 : collidingComponent->velocity.y;
+					collidingComponent->velocity.y = collidingComponent->velocity.y < 0 ? 0 : collidingComponent->velocity.y;
 				}
 				// Colliding along right bottom half of collider
 				if (collidingComponent->position.x > collidedComponent->position.x + collidedComponent->width) {
@@ -116,12 +116,12 @@ void EntityManager::HandleCollisions() {
 
 			if (isUp && isLeft) {
 				// Colliding along Top Left half of collider
-				if (collidingComponent->position.y + collidingComponent->height - 5 < collidedComponent->position.y && collidingComponent->position.x < (collidedComponent->position.x + collidedComponent->width / 2)) {
+				if (collidingComponent->position.y + collidingComponent->height - 10 < collidedComponent->position.y && collidingComponent->position.x < (collidedComponent->position.x + collidedComponent->width / 2)) {
 					collidingComponent->velocity.y = collidingComponent->velocity.y > 0 ? 0 : collidingComponent->velocity.y;
 				}
 
 				// Colliding along Left Top half of collider
-				if (collidingComponent->position.x + collidingComponent->width < collidedComponent->position.x + 10 && collidingComponent->position.y + collidingComponent->height > collidedComponent->position.y) {
+				if (collidingComponent->position.x + collidingComponent->width < collidedComponent->position.x + 10 && collidingComponent->position.y + collidingComponent->height > collidedComponent->position.y + 5) {
 					collidingComponent->velocity.x = collidingComponent->velocity.x > 0 ? 0 : collidingComponent->velocity.x;
 				}
 				break;
