@@ -23,13 +23,13 @@ void ColliderComponent::Update(float deltaTime) {
 }
 
 void ColliderComponent::Render() {
-	auto texture = Game::assetManager->GetTexture(COLLISION_TEXTURE_ID);
-	auto transform = owner->GetComponent<TransformComponent>();
-	SDL_Rect srcRect = {0, 0, 32, 32}; // start at beginning of file, 32x32;
-	
-	SDL_Rect dstRect = { 
-		static_cast<int>(transform->position.x - Game::camera.x),
-		static_cast<int>(transform->position.y - Game::camera.y),
-		32, 32 };
-	TextureManager::Draw(texture, srcRect, dstRect, SDL_FLIP_NONE);
+	//auto texture = Game::assetManager->GetTexture(COLLISION_TEXTURE_ID);
+	//auto transform = owner->GetComponent<TransformComponent>();
+	//SDL_Rect srcRect = {0, 0, 32, 32}; // start at beginning of file, 32x32;
+	//
+	//SDL_Rect dstRect = { 
+	//	static_cast<int>(transform->position.x - Game::camera.x),
+	//	static_cast<int>(transform->position.y - Game::camera.y),
+	//	32, 32 };
+	//TextureManager::Draw(texture, srcRect, dstRect, SDL_FLIP_NONE);
 }

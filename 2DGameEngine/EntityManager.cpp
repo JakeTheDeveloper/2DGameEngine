@@ -92,7 +92,7 @@ void EntityManager::HandleCollisions() {
 			
 			if (isDown && isRight) {
 				// Colliding along bottom right half of collider
-				if (collidingComponent->position.y > collidedComponent->position.y + collidedComponent->height) {
+				if (collidingComponent->position.y > collidedComponent->position.y + collidedComponent->height - 10) {
 					collidingComponent->velocity.y = collidingComponent->velocity.y < 0 ? 0 : collidingComponent->velocity.y;
 				}
 				// Colliding along right bottom half of collider
@@ -133,7 +133,7 @@ void EntityManager::HandleCollisions() {
 					collidingComponent->velocity.x = collidingComponent->velocity.x > 0 ? 0 : collidingComponent->velocity.x;
 				}
 				// Colliding along bottom left half of collider
-				if (collidingComponent->position.y > collidedComponent->position.y + collidedComponent->height) {
+				if (collidingComponent->position.y > collidedComponent->position.y + collidedComponent->height - 10) {
 					collidingComponent->velocity.y = collidingComponent->velocity.y < 0 ? 0 : collidingComponent->velocity.y;
 				}
 				break;

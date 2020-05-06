@@ -10,8 +10,8 @@ void TransformComponent::Initialize() {
 }
 
 void TransformComponent::Update(float deltaTime) {
-    position.x += velocity.x * deltaTime;
-	position.y += velocity.y * deltaTime;
+    position.x += velocity.x;
+	position.y += velocity.y;
 }
 
 void TransformComponent::Render() {
