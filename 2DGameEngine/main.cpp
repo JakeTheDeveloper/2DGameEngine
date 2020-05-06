@@ -1,9 +1,9 @@
 #include<iostream>
-#include <glm.hpp>
+#include "../extern/glm/glm.hpp"
 #include <lua.h>
 #include "Game.h"
 #include "Constants.h"
-#include <SDL.h>
+#include "../extern/SDL2/include/SDL.h"
 #include <time.h>
 
 int main() {

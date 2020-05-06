@@ -4,7 +4,7 @@
 #include "./Component.h"
 #include "Collision.h"
 #include <vector>
-#include "glm.hpp"
+#include "../extern/glm/glm.hpp"
 class EntityManager {
 private:
 public:

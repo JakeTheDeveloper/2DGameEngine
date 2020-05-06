@@ -5,7 +5,7 @@
 #include "TransformComponent.h"
 #include "SpriteComponent.h"
 #include "KeyboardControlComponent.h"
-#include "glm.hpp"
+#include "../extern/glm/glm.hpp"
 #include "ColliderComponent.h"
 #include "Terrain.h"
 

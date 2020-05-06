@@ -1,5 +1,5 @@
 #pragma once
-#include <SDL.h>
+#include "../extern/SDL2/include/SDL.h"
 #include "Constants.h"
 class Entity;
 

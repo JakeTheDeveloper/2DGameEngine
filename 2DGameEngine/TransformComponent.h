@@ -1,6 +1,6 @@
 #pragma once
-#include <SDL.h>
-#include <glm.hpp>
+#include "../extern/SDL2/include/SDL.h"
+#include "../extern/glm/glm.hpp"
 #include "Game.h"
 
 class TransformComponent: public Component {
