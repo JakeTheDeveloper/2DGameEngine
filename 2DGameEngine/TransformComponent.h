@@ -7,6 +7,7 @@ class TransformComponent: public Component {
 public:
 	glm::vec2 position;
 	glm::vec2 velocity;
+	glm::vec2 direction;
 	uint32_t width;
 	uint32_t height;
 	int scale;

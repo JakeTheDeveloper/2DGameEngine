@@ -158,6 +158,8 @@ void Game::HandleCameraMovement() {
 	camera.y = camera.y < 0 ? 0 : camera.y;
 	camera.x = camera.x > WINDOW_WIDTH ? WINDOW_WIDTH : camera.x;
 	camera.y = camera.y > WINDOW_HEIGHT ? WINDOW_HEIGHT : camera.y;
+
+	std::cout << mainPlayerTransform->direction.x << " " << mainPlayerTransform->direction.y << std::endl;
 }
 
 void Game::Destroy() {

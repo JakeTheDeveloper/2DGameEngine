@@ -12,6 +12,14 @@ void TransformComponent::Initialize() {
 void TransformComponent::Update(float deltaTime) {
     position.x += velocity.x;
 	position.y += velocity.y;
+	
+	if (velocity.x == 0 && velocity.y == 0) {
+		return;
+	}
+	else {
+		direction = velocity;
+	}
+	
 }
 
 void TransformComponent::Render() {
