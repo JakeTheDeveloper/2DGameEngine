@@ -22,6 +22,11 @@ enum LayerType {
 	UI_LAYER = 5
 };
 
+enum InteractionTag {
+	PLAYER_TO_OBJECT = 0,
+	PLAYER_TO_NPC = 1
+};
+
 const uint32_t NUM_LAYERS = 6;
 
 // external vs internal linkage here... Google dat.
