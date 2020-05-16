@@ -1,10 +1,10 @@
 #include "Entity.h"
 
-Entity::Entity(EntityManager& manager): _manager(manager) {
+Entity::Entity(EntityManager& manager): manager(manager) {
 	this->IsActive = true;
 }
 
-Entity::Entity(EntityManager& manager, std::string name, LayerType layerType) : _manager(manager), Name(name), layer(layerType) {
+Entity::Entity(EntityManager& manager, std::string name, LayerType layerType) : manager(manager), Name(name), layer(layerType) {
 	this->IsActive = true;
 }
 

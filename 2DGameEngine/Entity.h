@@ -14,10 +14,10 @@ struct InteractionComponent;
 
 struct Entity {
 private:
-	EntityManager& _manager;
 	std::vector<Component*> _components;
 	std::map<const std::type_info*, Component*> componentTypeMap;
 public:
+	EntityManager& manager;
 	std::string Name;
 	LayerType layer;
 	bool IsActive;
@@ -36,9 +36,9 @@ public:
 		_components.emplace_back(newComponent);
 		componentTypeMap[&typeid(*newComponent)] = newComponent;
 
-		// if (typeid(T).name() == typeid(InteractionComponent).name()) {
-		// 	//_manager.interactableEntities.emplace_back(this);
-		// }
+		 if (typeid(T).name() == typeid(InteractionComponent).name()) {
+		 	this->manager.interactableEntities.push_back(dthis);
+		 }
 
 		newComponent->Initialize();
 		
