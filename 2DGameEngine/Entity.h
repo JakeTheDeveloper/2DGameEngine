@@ -37,7 +37,7 @@ public:
 		componentTypeMap[&typeid(*newComponent)] = newComponent;
 
 		 if (typeid(T).name() == typeid(InteractionComponent).name()) {
-		 	this->manager.interactableEntities.push_back(dthis);
+		 	this->manager.interactableEntities.push_back(this);
 		 }
 
 		newComponent->Initialize();
