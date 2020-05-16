@@ -2,7 +2,7 @@
 
 InteractionManager::InteractionManager()
 {
-
+    
 }
 
 void InteractionManager::HandleInteractions(){

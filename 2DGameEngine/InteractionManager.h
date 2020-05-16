@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
+#include "Constants.h"
 #include "Entity.h"
+struct Entity;
 
 struct InteractionEvent {
 	Entity& srcObj;

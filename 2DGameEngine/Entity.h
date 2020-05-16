@@ -4,6 +4,7 @@
 #include <map>
 #include "Constants.h"
 #include "./EntityManager.h"
+#include "InteractionComponent.h"
 #include "./Component.h"
 #include <math.h>
 #include <typeinfo>
@@ -15,7 +16,7 @@ struct Entity {
 private:
 	EntityManager& _manager;
 	std::vector<Component*> _components;
-	std::map<const type_info*, Component*> componentTypeMap;
+	std::map<const std::type_info*, Component*> componentTypeMap;
 public:
 	std::string Name;
 	LayerType layer;
@@ -35,9 +36,9 @@ public:
 		_components.emplace_back(newComponent);
 		componentTypeMap[&typeid(*newComponent)] = newComponent;
 
-		//if (typeid(T).name == typeid(InteractionComponent).name()) {
-		//	//_manager.interactableEntities.emplace_back(this);
-		//}
+		// if (typeid(T).name() == typeid(InteractionComponent).name()) {
+		// 	//_manager.interactableEntities.emplace_back(this);
+		// }
 
 		newComponent->Initialize();
 		
