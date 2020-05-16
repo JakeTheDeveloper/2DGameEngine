@@ -4,10 +4,9 @@
 #include "./Component.h"
 #include "Collision.h"
 #include <vector>
+#include "InteractionManager.h"
 #include "../extern/glm/glm.hpp"
-class EntityManager {
-private:
-public:
+struct EntityManager {
 	std::vector<CollisionEvent*> collisionQueue;
 	std::vector<Entity*> entities;
 	void ClearData();
@@ -21,5 +20,5 @@ public:
 	Entity& GetEntityByName(std::string name) const;
 	void HandleCollisions();
 	void CheckCollisions();
-	void ClearCollisionQueue();
+	void ClearCollisionQueue();	
 };

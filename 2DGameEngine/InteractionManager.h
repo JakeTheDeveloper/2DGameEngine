@@ -10,7 +10,6 @@ struct InteractionEvent {
 
 struct InteractionManager {
 	std::vector<InteractionEvent*>interactionQueue;
-	~InteractionManager();
 	void HandleInteractions();
 	void ClearInteractionQueue();
 };

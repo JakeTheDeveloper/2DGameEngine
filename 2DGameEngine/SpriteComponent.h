@@ -3,7 +3,7 @@
 #include "AssetManager.h"
 #include "TransformComponent.h"
 #include "Animation.h"
-#include "../extern/SDL2/include/SDL.h"
+#include <SDL2/SDL.h>
 
 class SpriteComponent: public Component {
 private:

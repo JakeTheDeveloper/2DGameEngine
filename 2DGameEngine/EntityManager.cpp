@@ -55,7 +55,6 @@ void EntityManager::CheckCollisions() {
 					if (collidedEntity->Name.compare(collidingEntity->Name) != 0 && collidedEntity->HasComponent<TransformComponent>()) {
 						if (Collision::CheckRectangleCollision(collidingEntity->GetComponent<ColliderComponent>()->collider, collidedEntity->GetComponent<ColliderComponent>()->collider)) {
 							collisionQueue.emplace_back(new CollisionEvent{ *collidingEntity, *collidedEntity });
-
 						}
 					}
 				}

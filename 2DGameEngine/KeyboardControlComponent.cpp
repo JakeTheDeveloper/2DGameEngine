@@ -1,6 +1,5 @@
 #include "KeyboardControlComponent.h"
 #include <iostream>
-
 KeyboardControlComponent::KeyboardControlComponent() {
 	
 }
@@ -11,7 +10,6 @@ void KeyboardControlComponent::Initialize() {
 }
 
 void KeyboardControlComponent::Update(float deltaTime) {
-	
 	if (_xVel == 0) {
 		ownerTransform->velocity.x = 0;
 	}
@@ -36,7 +34,7 @@ void KeyboardControlComponent::Update(float deltaTime) {
 
 	ownerTransform->velocity.x += _xVel * deltaTime;
 	ownerTransform->velocity.y += _yVel * deltaTime;
-
+	interact = false;
 }
 
 void KeyboardControlComponent::HandleInput(SDL_Event& sdlEvent) {
@@ -54,6 +52,9 @@ void KeyboardControlComponent::HandleInput(SDL_Event& sdlEvent) {
 			break;
 		case SDLK_d:
 			_xVel = 10.f;
+			break;
+		case SDLK_e:
+			interact = true;
 			break;
 		default:
 			break;

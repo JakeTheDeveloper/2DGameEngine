@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
@@ -6,3 +6,4 @@
 /2DGameEngine/x64/Debug/2DGameEngine.tlog
 /x64/Debug
 /2DGameEngine/x64/Debug
+2DGameEngine/CMakeCache.txt

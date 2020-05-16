@@ -13,7 +13,7 @@ class Entity {
 private:
 	EntityManager& _manager;
 	std::vector<Component*> _components;
-	std::map<const type_info*, Component*> componentTypeMap;
+	std::map<const std::type_info*, Component*> componentTypeMap;
 public:
 	std::string Name;
 	LayerType layer;
