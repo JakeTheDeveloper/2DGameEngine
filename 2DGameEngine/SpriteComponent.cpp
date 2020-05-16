@@ -45,8 +45,8 @@ void SpriteComponent::SetTexture(std::string assetTextureId) {
 
 void SpriteComponent::Initialize() {
 	_attachedObjectTransform = owner->GetComponent<TransformComponent>();
-	_srcRect.x = 0.f;
-	_srcRect.y = 0.f;
+	_srcRect.x = 0;
+	_srcRect.y = 0;
 	_srcRect.w = _attachedObjectTransform->width;
 	_srcRect.h = _attachedObjectTransform->height;
 }

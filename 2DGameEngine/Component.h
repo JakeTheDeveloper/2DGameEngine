@@ -1,8 +1,8 @@
 #pragma once
 
-class Entity;
+struct Entity;
 
-class Component {
+struct Component {
 public:
 	Entity* owner;
 	virtual ~Component() {};

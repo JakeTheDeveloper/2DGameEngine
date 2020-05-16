@@ -1,5 +1,10 @@
 #include "InteractionManager.h"
 
+InteractionManager::InteractionManager()
+{
+
+}
+
 void InteractionManager::HandleInteractions(){
     for(auto& interaction: interactionQueue){
 

@@ -5,7 +5,7 @@
 #include "Animation.h"
 #include <SDL2/SDL.h>
 
-class SpriteComponent: public Component {
+struct SpriteComponent: public Component {
 private:
 	TransformComponent* _attachedObjectTransform;
 	SDL_Texture* _texture;

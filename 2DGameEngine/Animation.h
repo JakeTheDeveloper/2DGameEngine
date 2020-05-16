@@ -1,5 +1,5 @@
 #pragma once
-class Animation {
+struct Animation {
 public:
 	int index;
 	int numFrames;

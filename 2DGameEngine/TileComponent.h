@@ -4,7 +4,7 @@
 #include "EntityManager.h"
 #include "TextureManager.h"
 
-class TileComponent: public Component {
+struct TileComponent: public Component {
 public:
 	SDL_Texture* texture;
 	SDL_Rect srcRect; // source rectangle pointing at the png/spritesheet

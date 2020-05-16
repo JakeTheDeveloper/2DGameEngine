@@ -3,7 +3,7 @@
 #include "EntityManager.h"
 #include "TileComponent.h"
 #include <fstream>
-class Terrain {
+struct Terrain {
 private:
 	std::string _textureId;
 	uint16_t _scale;

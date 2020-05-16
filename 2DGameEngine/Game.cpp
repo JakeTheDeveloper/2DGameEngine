@@ -10,9 +10,9 @@
 #include "Terrain.h"
 
 extern "C" {
-#include "../extern/lua/include/lua.h"
-#include "../extern/lua/include/lauxlib.h"
-#include "../extern/lua/include/lualib.h"
+#include "../extern/lua/lua.h"
+#include "../extern/lua/lauxlib.h"
+#include "../extern/lua/lualib.h"
 }
 
 EntityManager manager;

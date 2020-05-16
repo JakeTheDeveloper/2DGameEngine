@@ -3,7 +3,7 @@
 #include "../extern/glm/glm.hpp"
 #include "Game.h"
 
-class TransformComponent: public Component {
+struct TransformComponent: public Component {
 public:
 	glm::vec2 position;
 	glm::vec2 velocity;

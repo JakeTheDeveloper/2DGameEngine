@@ -6,14 +6,16 @@
 #include "./EntityManager.h"
 #include "./Component.h"
 #include <math.h>
-class EntityManager;
-class Component;
+#include <typeinfo>
+struct EntityManager;
+struct Component;
+struct InteractionComponent;
 
-class Entity {
+struct Entity {
 private:
 	EntityManager& _manager;
 	std::vector<Component*> _components;
-	std::map<const std::type_info*, Component*> componentTypeMap;
+	std::map<const type_info*, Component*> componentTypeMap;
 public:
 	std::string Name;
 	LayerType layer;
@@ -32,6 +34,10 @@ public:
 		
 		_components.emplace_back(newComponent);
 		componentTypeMap[&typeid(*newComponent)] = newComponent;
+
+		//if (typeid(T).name == typeid(InteractionComponent).name()) {
+		//	//_manager.interactableEntities.emplace_back(this);
+		//}
 
 		newComponent->Initialize();
 		

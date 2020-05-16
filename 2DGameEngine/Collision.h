@@ -1,7 +1,7 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include "Constants.h"
-class Entity;
+struct Entity;
 
 struct Collision {
 	static bool CheckRectangleCollision(const SDL_Rect& rectA, const SDL_Rect& rectB);

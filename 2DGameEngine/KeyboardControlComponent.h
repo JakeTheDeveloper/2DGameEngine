@@ -5,7 +5,7 @@
 #include "SpriteComponent.h"
 #include "InteractionManager.h"
 
-class KeyboardControlComponent: public Component {
+struct KeyboardControlComponent: public Component {
 private: 
 	float _xVel = 0.f;
 	float _yVel = 0.f;

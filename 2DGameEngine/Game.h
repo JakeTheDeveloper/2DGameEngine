@@ -10,9 +10,9 @@
 // vvv Don't remove this otherwise SDL dies.
 #undef main
 
-class AssetManager;
+struct AssetManager;
 
-class Game {
+struct Game {
 private:
 	SDL_Window* window;
 	float _ticksLastFrame = 0.0f;

@@ -4,11 +4,11 @@
 #include "./Component.h"
 #include "Collision.h"
 #include <vector>
-#include "InteractionManager.h"
 #include "../extern/glm/glm.hpp"
 struct EntityManager {
 	std::vector<CollisionEvent*> collisionQueue;
 	std::vector<Entity*> entities;
+	std::vector<Entity*> interactableEntities;
 	void ClearData();
 	void Update(float deltaTime);
 	void Render();
@@ -16,6 +16,7 @@ struct EntityManager {
 	Entity& AddEntity(std::string entityName, LayerType layerType);
 	std::vector<Entity*> GetEntitiesByLayer(LayerType layerType) const;
 	std::vector<Entity*> GetEntities() const;
+
 	uint32_t GetEntityCount() const;
 	Entity& GetEntityByName(std::string name) const;
 	void HandleCollisions();

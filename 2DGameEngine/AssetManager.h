@@ -4,7 +4,7 @@
 #include "TextureManager.h"
 #include "EntityManager.h"
 
-class AssetManager {
+struct AssetManager {
 private:
 	EntityManager* manager;
 	std::map<std::string, SDL_Texture*> textures;
