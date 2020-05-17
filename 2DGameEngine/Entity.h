@@ -13,10 +13,8 @@ struct Component;
 struct InteractionComponent;
 
 struct Entity {
-private:
-	std::vector<Component*> _components;
+	std::vector<Component*> components;
 	std::map<const std::type_info*, Component*> componentTypeMap;
-public:
 	EntityManager& manager;
 	std::string Name;
 	LayerType layer;
@@ -33,7 +31,7 @@ public:
 
 		newComponent->owner = this;
 		
-		_components.emplace_back(newComponent);
+		components.emplace_back(newComponent);
 		componentTypeMap[&typeid(*newComponent)] = newComponent;
 
 		 if (typeid(T).name() == typeid(InteractionComponent).name()) {

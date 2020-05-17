@@ -9,13 +9,13 @@ Entity::Entity(EntityManager& manager, std::string name, LayerType layerType) : 
 }
 
 void Entity::Update(float deltaTime) {
-	for(auto& component : _components) {
+	for(auto& component : components) {
 		component->Update(deltaTime);
 	}
 }
 
 void Entity::Render() {
-	for(auto& component : _components) {
+	for(auto& component : components) {
 		component->Render();
 	}
 }

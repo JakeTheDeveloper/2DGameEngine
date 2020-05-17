@@ -1,6 +1,6 @@
 #pragma once
 #include "InteractionManager.h"
-#include "Component.h"
+#include "TransformComponent.h"
 
 struct InteractionManager;
 

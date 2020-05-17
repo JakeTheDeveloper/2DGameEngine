@@ -1,7 +1,7 @@
 #pragma once
 #include <SDL2/SDL.h>
+#include "Component.h"
 #include "../extern/glm/glm.hpp"
-#include "Game.h"
 
 struct TransformComponent: public Component {
 public:

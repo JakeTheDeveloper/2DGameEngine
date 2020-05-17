@@ -6,9 +6,9 @@
 
 struct AssetManager {
 private:
-	EntityManager* manager;
 	std::map<std::string, SDL_Texture*> textures;
 public:
+	EntityManager* manager;
 	AssetManager(EntityManager* manager);
 	~AssetManager();
 	void ClearData();
