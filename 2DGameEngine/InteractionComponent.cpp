@@ -1,4 +1,5 @@
 #include "InteractionComponent.h"
+#include <iostream>
 
 InteractionComponent::InteractionComponent(InteractionManager& interactionManager) : interactionManager(interactionManager) {
 
@@ -10,17 +11,12 @@ void InteractionComponent::Interact() {
     auto yDiff = 0.f;
 
     for (auto& e : owner->manager.interactableEntities) {
-        auto eTrans = e->GetComponent<TransformComponent>();
-        xDiff = ownerTransform->position.x - eTrans->position.x;
-        yDiff = ownerTransform->position.y - eTrans->position.y;
-        
-        if ((xDiff < 6 && xDiff > -6) || (yDiff < 6 && yDiff > -6)){
-            InteractionEvent ie = {
-                *owner,
-                *e,
-                PLAYER_TO_OBJECT
-            };
-            interactionManager.interactionQueue.emplace_back(&ie);
+        if (e->Name.compare(owner->Name) != 0) {
+            auto eTrans = e->GetComponent<TransformComponent>();
+            auto trans = ownerTransform->position - eTrans->position;
+            //std::cout << trans.x << " " << trans.y << std::endl;
+
+            interactionManager.interactionQueue.emplace_back(new InteractionEvent{*owner, *e, PLAYER_TO_OBJECT});
         }
     }
 }

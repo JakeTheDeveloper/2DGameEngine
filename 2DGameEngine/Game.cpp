@@ -1,8 +1,8 @@
 #include <iostream>
-#include "Constants.h"
 #include "Game.h"
 #include "AssetManager.h"
 #include "TransformComponent.h"
+#include "InteractionComponent.h"
 #include "SpriteComponent.h"
 #include "KeyboardControlComponent.h"
 #include "../extern/glm/glm.hpp"
@@ -16,6 +16,7 @@ extern "C" {
 }
 
 EntityManager manager;
+InteractionManager* Game::interactionManager = new InteractionManager();
 AssetManager* Game::assetManager = new AssetManager(&manager);
 SDL_Renderer* Game::renderer;
 Entity& playerEntity = manager.AddEntity("player", PLAYER_LAYER);
@@ -89,10 +90,13 @@ void Game::LoadLevel(uint32_t level) {
 	playerEntity.AddComponent<KeyboardControlComponent>();
 	playerEntity.AddComponent<SpriteComponent>("player", 1, 1.f, false,  false);
 	playerEntity.AddComponent<ColliderComponent>("player", 1300.f, 800.f, 32, 32);
+	playerEntity.AddComponent<InteractionComponent>(*interactionManager);
+
 
 	enemy.AddComponent<TransformComponent>(glm::vec2(1350.f, 850.f), glm::vec2(0.f, 0.f), 200, 200, 1);
 	enemy.AddComponent<SpriteComponent>("enemy", 1, 1.f, false, false);
 	enemy.AddComponent<ColliderComponent>("enemy", 1350.f, 850.f, 200, 200);
+	enemy.AddComponent<InteractionComponent>(*interactionManager);
 
 	terrain = new Terrain("jungle-tiletexture", 4, 32);
 	terrain->LoadTerrain("../assets/tilemaps/jungle.map", 25, 20);
@@ -127,6 +131,7 @@ void Game::Update() {
 	manager.Update(deltaTime);
 
 	HandleCameraMovement();
+	interactionManager->HandleInteractions();
 	manager.CheckCollisions();
 	manager.HandleCollisions();
 }
@@ -159,7 +164,7 @@ void Game::HandleCameraMovement() {
 	camera.x = camera.x > WINDOW_WIDTH ? WINDOW_WIDTH : camera.x;
 	camera.y = camera.y > WINDOW_HEIGHT ? WINDOW_HEIGHT : camera.y;
 
-	std::cout << mainPlayerTransform->direction.x << " " << mainPlayerTransform->direction.y << std::endl;
+	//std::cout << mainPlayerTransform->direction.x << " " << mainPlayerTransform->direction.y << std::endl;
 }
 
 void Game::Destroy() {

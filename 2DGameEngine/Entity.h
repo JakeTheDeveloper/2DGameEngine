@@ -2,7 +2,6 @@
 #include <vector>
 #include <string>
 #include <map>
-#include "Constants.h"
 #include "./EntityManager.h"
 #include "InteractionComponent.h"
 #include "./Component.h"

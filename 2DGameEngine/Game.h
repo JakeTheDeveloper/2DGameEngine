@@ -22,6 +22,7 @@ public:
 	~Game();
 	
 	static SDL_Renderer* renderer;
+	static InteractionManager* interactionManager;
 	static AssetManager* assetManager;
 	static SDL_Rect camera;
 	float deltaTime = 0.0f;
@@ -32,6 +33,5 @@ public:
 	void Update();
 	void Render();
 	void HandleCameraMovement();
-	void CheckCollisions();
 	void Destroy();
 };

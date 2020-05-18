@@ -7,6 +7,18 @@ const uint32_t WINDOW_HEIGHT = 800;
 const float FPS = 60;
 const float FRAME_TARGET_TIME = 1000 / FPS;
 
+static const enum class FacingDirection {
+	FACING_NONE = 0,
+	FACING_LEFT = 1,
+	FACING_UP = 2,
+	FACING_RIGHT = 4,
+	FACING_DOWN = 8
+};
+
+static const FacingDirection& operator|=(FacingDirection& a, FacingDirection b) {
+	return (FacingDirection&)((int&)a |= (int)b);
+};
+
 enum CollisionType {
 	NO_COLLISION,
 	PLAYER_ENEMY_COLLISION,

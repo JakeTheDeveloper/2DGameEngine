@@ -1,6 +1,5 @@
 #pragma once
 #include <SDL2/SDL.h>
-#include "Constants.h"
 struct Entity;
 
 struct Collision {

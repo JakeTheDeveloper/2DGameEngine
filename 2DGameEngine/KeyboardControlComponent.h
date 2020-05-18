@@ -10,7 +10,6 @@ private:
 	float _xVel = 0.f;
 	float _yVel = 0.f;
 public:
-	bool interact;
 	TransformComponent* ownerTransform;
 	SpriteComponent* sprite;
 	InteractionManager interactionManager = InteractionManager();

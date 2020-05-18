@@ -34,7 +34,6 @@ void KeyboardControlComponent::Update(float deltaTime) {
 
 	ownerTransform->velocity.x += _xVel * deltaTime;
 	ownerTransform->velocity.y += _yVel * deltaTime;
-	interact = false;
 }
 
 void KeyboardControlComponent::HandleInput(SDL_Event& sdlEvent) {
@@ -54,7 +53,7 @@ void KeyboardControlComponent::HandleInput(SDL_Event& sdlEvent) {
 			_xVel = 10.f;
 			break;
 		case SDLK_e:
-			interact = true;
+			owner->GetComponent<InteractionComponent>()->Interact();
 			break;
 		default:
 			break;

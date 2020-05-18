@@ -2,7 +2,6 @@
 #include "../extern/glm/glm.hpp"
 #include <lua/lua.h>
 #include "Game.h"
-#include "Constants.h"
 #include <SDL2/SDL.h>
 #include <time.h>
 
