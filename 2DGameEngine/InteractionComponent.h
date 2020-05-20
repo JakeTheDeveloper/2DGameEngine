@@ -11,4 +11,7 @@ struct InteractionComponent: public Component{
     void Update(float deltaTime) override;
     void Render() override;
     void Initialize() override;
+
+private:
+    bool Interactable(TransformComponent src, TransformComponent targ);
 };

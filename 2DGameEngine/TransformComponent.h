@@ -9,7 +9,10 @@ struct TransformComponent: public Component {
 	glm::vec2 direction;
 	uint32_t width;
 	uint32_t height;
-	FacingDirection facingDirection;
+	float topLeft;
+	float botLeft;
+	float topRight;
+	float botRight;
 	int scale;
 
 	TransformComponent(glm::vec2 position, glm::vec2 velocity, uint32_t w, uint32_t h, int scale);

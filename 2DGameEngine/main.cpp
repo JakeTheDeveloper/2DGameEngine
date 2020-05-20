@@ -13,7 +13,7 @@ int main() {
 	time_t startTime = time(0);
 	while(game->isRunning) {
 		if (difftime(time(0), startTime) > 1) {
-			//std::cout << fpsCounter << std::endl;
+			std::cout << fpsCounter << std::endl;
 			fpsCounter = 0;
 			startTime = time(0);
 		}

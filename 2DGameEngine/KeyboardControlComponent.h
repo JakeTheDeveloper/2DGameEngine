@@ -10,9 +10,9 @@ private:
 	float _xVel = 0.f;
 	float _yVel = 0.f;
 public:
+	InteractionManager interactionManager = InteractionManager();
 	TransformComponent* ownerTransform;
 	SpriteComponent* sprite;
-	InteractionManager interactionManager = InteractionManager();
 	KeyboardControlComponent();
 	void Initialize() override;
 	void Update(float deltaTime) override;

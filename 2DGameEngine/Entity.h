@@ -17,6 +17,7 @@ struct Entity {
 	EntityManager& manager;
 	std::string Name;
 	LayerType layer;
+	FacingDirection facingDirection;
 	bool IsActive;
 	Entity(EntityManager& manager);
 	Entity(EntityManager& manager, std::string name, LayerType layerType);

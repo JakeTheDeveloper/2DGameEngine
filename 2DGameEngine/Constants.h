@@ -7,7 +7,7 @@ const uint32_t WINDOW_HEIGHT = 800;
 const float FPS = 60;
 const float FRAME_TARGET_TIME = 1000 / FPS;
 
-static const enum class FacingDirection {
+enum class FacingDirection {
 	FACING_NONE = 0,
 	FACING_LEFT = 1,
 	FACING_UP = 2,

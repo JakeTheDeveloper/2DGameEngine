@@ -42,15 +42,19 @@ void KeyboardControlComponent::HandleInput(SDL_Event& sdlEvent) {
 		switch (sdlEvent.key.keysym.sym) {
 		case SDLK_w:
 			_yVel = -10.f;
+			owner->facingDirection = FacingDirection::FACING_UP;
 			break;
 		case SDLK_a:
 			_xVel = -10.f;
+			owner->facingDirection = FacingDirection::FACING_LEFT;
 			break;
 		case SDLK_s:
 			_yVel = 10.f;
+			owner->facingDirection = FacingDirection::FACING_DOWN;
 			break;
 		case SDLK_d:
 			_xVel = 10.f;
+			owner->facingDirection = FacingDirection::FACING_RIGHT;
 			break;
 		case SDLK_e:
 			owner->GetComponent<InteractionComponent>()->Interact();
