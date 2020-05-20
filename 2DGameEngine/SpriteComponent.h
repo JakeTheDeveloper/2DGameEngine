@@ -3,7 +3,7 @@
 #include "AssetManager.h"
 #include "TransformComponent.h"
 #include "Animation.h"
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 struct SpriteComponent: public Component {
 private:

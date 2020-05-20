@@ -1,0 +1,3 @@
+C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/cmake-build-debug/CMakeFiles/game_example.dir
+C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,8 +1,8 @@
 #include<iostream>
 #include "../extern/glm/glm.hpp"
-#include <lua/lua.h>
+//#include <lua.h>
 #include "Game.h"
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <time.h>
 
 int main() {

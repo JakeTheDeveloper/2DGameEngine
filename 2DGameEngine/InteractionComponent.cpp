@@ -22,6 +22,9 @@ void InteractionComponent::Interact() {
 bool InteractionComponent::Interactable(TransformComponent src, TransformComponent targ) {
     switch (owner->facingDirection) {
         case FacingDirection::FACING_LEFT:
+            if (src.topLeft > targ.topRight) {
+
+            }
             break;
         case FacingDirection::FACING_UP:
 

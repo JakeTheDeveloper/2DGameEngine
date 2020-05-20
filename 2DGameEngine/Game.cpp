@@ -10,11 +10,11 @@
 #include "ColliderComponent.h"
 #include "Terrain.h"
 
-extern "C" {
-#include "../extern/lua/lua.h"
-#include "../extern/lua/lauxlib.h"
-#include "../extern/lua/lualib.h"
-}
+//extern "C" {
+//#include "../extern/lua/lua.h"
+//#include "../extern/lua/lauxlib.h"
+//#include "../extern/lua/lualib.h"
+//}
 
 EntityManager manager;
 InteractionManager* Game::interactionManager = new InteractionManager();
@@ -40,23 +40,23 @@ void Game::Initialize(const int width, const int height) {
 
 	std::string cmd = "a = 7 + 11";
 
-	lua_State* L = luaL_newstate();
+//	lua_State* L = luaL_newstate();
 
-	int r = luaL_dostring(L, cmd.c_str());
+//	int r = luaL_dostring(L, cmd.c_str());
 
-	if (r == LUA_OK) {
-		lua_getglobal(L, "a");
-		if (lua_isnumber(L, -1)) {
-			float a_in_cpp = (float)lua_tonumber(L, -1);
-			std::cout << a_in_cpp << std::endl;
-		}
-	}
-	else {
-		std::string errorMsg = lua_tostring(L, -1);
-		std::cout << errorMsg << std::endl;
-	}
-
-	lua_close(L);
+//	if (r == LUA_OK) {
+//		lua_getglobal(L, "a");
+//		if (lua_isnumber(L, -1)) {
+//			float a_in_cpp = (float)lua_tonumber(L, -1);
+//			std::cout << a_in_cpp << std::endl;
+//		}
+//	}
+//	else {
+//		std::string errorMsg = lua_tostring(L, -1);
+//		std::cout << errorMsg << std::endl;
+//	}
+//
+//	lua_close(L);
 	
 	window = SDL_CreateWindow("2D", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
 
