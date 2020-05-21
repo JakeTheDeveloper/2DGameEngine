@@ -1,4 +1,22 @@
-"C:\Program Files\JetBrains\CLion 2020.1.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - NMake Makefiles" C:\Users\Jake\source\repos\2DGameEngine
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug VERBOSE=1 -G "CodeBlocks - Unix Makefiles" /Users/jakedonese/CodeProjects/2DGameEngine
+-- The C compiler identification is AppleClang 10.0.1.10010046
+-- The CXX compiler identification is AppleClang 10.0.1.10010046
+-- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc
+-- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++
+-- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- SDL FOUND
+-- Found SDL2_image: /Library/Frameworks/SDL2_image.framework  
+-- SDL_image FOUND
+-- -L/usr/local/Cellar/sdl2/2.0.12_1/lib  -lSDL2
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug
+-- Build files have been written to: /Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug

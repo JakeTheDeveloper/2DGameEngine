@@ -4,29 +4,30 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/Animation.cpp" "C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/Animation.cpp.obj"
-  "C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/AssetManager.cpp" "C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/AssetManager.cpp.obj"
-  "C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/ColliderComponent.cpp" "C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/ColliderComponent.cpp.obj"
-  "C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/Collision.cpp" "C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/Collision.cpp.obj"
-  "C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/Component.cpp" "C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/Component.cpp.obj"
-  "C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/Entity.cpp" "C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/Entity.cpp.obj"
-  "C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/EntityManager.cpp" "C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/EntityManager.cpp.obj"
-  "C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/Game.cpp" "C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/Game.cpp.obj"
-  "C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/InteractionComponent.cpp" "C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/InteractionComponent.cpp.obj"
-  "C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/InteractionManager.cpp" "C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/InteractionManager.cpp.obj"
-  "C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/KeyboardControlComponent.cpp" "C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/KeyboardControlComponent.cpp.obj"
-  "C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/SpriteComponent.cpp" "C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/SpriteComponent.cpp.obj"
-  "C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/Terrain.cpp" "C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/Terrain.cpp.obj"
-  "C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/TextureManager.cpp" "C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/TextureManager.cpp.obj"
-  "C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/TileComponent.cpp" "C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/TileComponent.cpp.obj"
-  "C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/TransformComponent.cpp" "C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/TransformComponent.cpp.obj"
-  "C:/Users/Jake/source/repos/2DGameEngine/2DGameEngine/main.cpp" "C:/Users/Jake/source/repos/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/main.cpp.obj"
+  "/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Animation.cpp" "/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/Animation.cpp.o"
+  "/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/AssetManager.cpp" "/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/AssetManager.cpp.o"
+  "/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/ColliderComponent.cpp" "/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/ColliderComponent.cpp.o"
+  "/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Collision.cpp" "/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/Collision.cpp.o"
+  "/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Component.cpp" "/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/Component.cpp.o"
+  "/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Entity.cpp" "/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/Entity.cpp.o"
+  "/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/EntityManager.cpp" "/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/EntityManager.cpp.o"
+  "/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Game.cpp" "/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/Game.cpp.o"
+  "/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/InteractionComponent.cpp" "/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/InteractionComponent.cpp.o"
+  "/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/InteractionManager.cpp" "/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/InteractionManager.cpp.o"
+  "/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/KeyboardControlComponent.cpp" "/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/KeyboardControlComponent.cpp.o"
+  "/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/SpriteComponent.cpp" "/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/SpriteComponent.cpp.o"
+  "/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Terrain.cpp" "/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/Terrain.cpp.o"
+  "/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/TextureManager.cpp" "/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/TextureManager.cpp.o"
+  "/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/TileComponent.cpp" "/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/TileComponent.cpp.o"
+  "/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/TransformComponent.cpp" "/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/TransformComponent.cpp.o"
+  "/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/main.cpp" "/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/main.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "MSVC")
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "../extern/SDL2/include"
+  "/usr/local/Cellar/sdl2/2.0.12_1/include/SDL2"
+  "/Library/Frameworks/SDL2_image.framework/Headers"
   )
 
 # Targets to which this target links.

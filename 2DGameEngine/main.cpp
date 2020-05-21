@@ -5,7 +5,7 @@
 #include <SDL.h>
 #include <time.h>
 
-int main() {
+int main(int argc, char* argv[]) {
 	auto* game = new Game();
 
 	game->Initialize(WINDOW_WIDTH, WINDOW_HEIGHT);
