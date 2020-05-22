@@ -16,12 +16,6 @@ begin_code.h
 close_code.h
 -
 
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Animation.h
-
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/AssetManager.cpp
-AssetManager.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/AssetManager.h
-
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/AssetManager.h
 map
 -
@@ -29,18 +23,6 @@ string
 -
 TextureManager.h
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/TextureManager.h
-EntityManager.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/EntityManager.h
-
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/ColliderComponent.cpp
-ColliderComponent.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/ColliderComponent.h
-
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/ColliderComponent.h
-Game.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Game.h
-TransformComponent.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/TransformComponent.h
 EntityManager.h
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/EntityManager.h
 
@@ -55,10 +37,6 @@ Constants.h
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Constants.h
 string
 -
-
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Entity.cpp
-Entity.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Entity.h
 
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Entity.h
 vector
@@ -78,16 +56,6 @@ math.h
 typeinfo
 -
 
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/EntityManager.cpp
-EntityManager.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/EntityManager.h
-Collision.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Collision.h
-ColliderComponent.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/ColliderComponent.h
-iostream
--
-
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/EntityManager.h
 ./Entity.h
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Entity.h
@@ -99,28 +67,6 @@ vector
 -
 ../extern/glm/glm.hpp
 /Users/jakedonese/CodeProjects/2DGameEngine/extern/glm/glm.hpp
-
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Game.cpp
-iostream
--
-Game.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Game.h
-AssetManager.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/AssetManager.h
-TransformComponent.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/TransformComponent.h
-InteractionComponent.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/InteractionComponent.h
-SpriteComponent.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/SpriteComponent.h
-KeyboardControlComponent.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/KeyboardControlComponent.h
-../extern/glm/glm.hpp
-/Users/jakedonese/CodeProjects/2DGameEngine/extern/glm/glm.hpp
-ColliderComponent.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/ColliderComponent.h
-Terrain.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Terrain.h
 
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Game.h
 SDL.h
@@ -136,21 +82,11 @@ EntityManager.h
 AssetManager.h
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/AssetManager.h
 
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/InteractionComponent.cpp
-InteractionComponent.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/InteractionComponent.h
-iostream
--
-
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/InteractionComponent.h
 InteractionManager.h
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/InteractionManager.h
 TransformComponent.h
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/TransformComponent.h
-
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/InteractionManager.cpp
-InteractionManager.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/InteractionManager.h
 
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/InteractionManager.h
 vector
@@ -159,40 +95,6 @@ Constants.h
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Constants.h
 Entity.h
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Entity.h
-
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/KeyboardControlComponent.cpp
-KeyboardControlComponent.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/KeyboardControlComponent.h
-iostream
--
-
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/KeyboardControlComponent.h
-Game.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Game.h
-EntityManager.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/EntityManager.h
-TransformComponent.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/TransformComponent.h
-SpriteComponent.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/SpriteComponent.h
-InteractionManager.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/InteractionManager.h
-
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/SpriteComponent.cpp
-SpriteComponent.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/SpriteComponent.h
-
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/SpriteComponent.h
-TextureManager.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/TextureManager.h
-AssetManager.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/AssetManager.h
-TransformComponent.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/TransformComponent.h
-Animation.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Animation.h
-SDL.h
--
 
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Terrain.cpp
 Terrain.h
@@ -208,19 +110,11 @@ TileComponent.h
 fstream
 -
 
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/TextureManager.cpp
-TextureManager.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/TextureManager.h
-
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/TextureManager.h
 Game.h
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Game.h
 SDL_image.h
 -
-
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/TileComponent.cpp
-TileComponent.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/TileComponent.h
 
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/TileComponent.h
 SDL.h
@@ -239,18 +133,6 @@ SDL.h
 /Users/jakedonese/CodeProjects/2DGameEngine/extern/glm/glm.hpp
 Component.h
 /Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Component.h
-
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/main.cpp
-iostream
--
-../extern/glm/glm.hpp
-/Users/jakedonese/CodeProjects/2DGameEngine/extern/glm/glm.hpp
-Game.h
-/Users/jakedonese/CodeProjects/2DGameEngine/2DGameEngine/Game.h
-SDL.h
--
-time.h
--
 
 /Users/jakedonese/CodeProjects/2DGameEngine/extern/glm/common.hpp
 detail/qualifier.hpp

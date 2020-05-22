@@ -22,9 +22,12 @@ void EntityManager::Render() {
 	}
 }
 
-Entity& EntityManager::AddEntity(std::string entityName, LayerType layer) {
-	auto* entity = new Entity(*this, entityName, layer);
+Entity &EntityManager::AddEntity(std::string entityName, LayerType layerType, bool interactable) {
+	auto* entity = new Entity(*this, entityName, layerType);
 	entities.emplace_back(entity);
+	if(interactable){
+	    interactableEntities.emplace_back(entity);
+	}
 	return *entity;
 }
 

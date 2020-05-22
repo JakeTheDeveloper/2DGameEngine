@@ -20,7 +20,7 @@ EntityManager manager;
 InteractionManager* Game::interactionManager = new InteractionManager();
 AssetManager* Game::assetManager = new AssetManager(&manager);
 SDL_Renderer* Game::renderer;
-Entity& playerEntity = manager.AddEntity("player", PLAYER_LAYER);
+Entity& playerEntity = manager.AddEntity("player", PLAYER_LAYER, true);
 SDL_Rect Game::camera = { 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT };
 Terrain* terrain;
 
@@ -80,7 +80,7 @@ void Game::Initialize(const int width, const int height) {
 
 
 void Game::LoadLevel(uint32_t level) {
-	auto& enemy = manager.AddEntity("enemy", PLAYER_LAYER);
+	auto& enemy = manager.AddEntity("enemy", PLAYER_LAYER, true);
 	assetManager->AddTexture(COLLISION_TEXTURE_ID, "../assets/images/collisiontexture.png");
 
 	assetManager->AddTexture("player", std::string("../assets/images/AppleMan.png").c_str());

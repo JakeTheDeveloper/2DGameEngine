@@ -13,7 +13,7 @@ struct EntityManager {
 	void Update(float deltaTime);
 	void Render();
 	bool HasNoEntities();
-	Entity& AddEntity(std::string entityName, LayerType layerType);
+	Entity& AddEntity(std::string entityName, LayerType layerType, bool interactable);
 	std::vector<Entity*> GetEntitiesByLayer(LayerType layerType) const;
 	std::vector<Entity*> GetEntities() const;
 
