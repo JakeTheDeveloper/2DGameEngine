@@ -33,10 +33,12 @@ if(WIN32)
 set(SDL2_INCLUDE_DIR "${CMAKE_CURRENT_LIST_DIR}/extern/SDL2/include")
 set(SDL2_LIBRARIES "${CMAKE_CURRENT_LIST_DIR}/extern/SDL2/lib/x64/SDL2.lib;${CMAKE_CURRENT_LIST_DIR}/extern/SDL2/lib/x64/SDL2main.lib;${CMAKE_CURRENT_LIST_DIR}/extern/SDL2/lib/x64/SDL2_image.lib;")
 
-#set(LUA_INCLUDE_DIR "${CMAKE_CURRENT_LIST_DIR}/extern/lua")
-#set(LUA_LIBRARIES "${CMAKE_CURRENT_LIST_DIR}/extern/lua/lua53.lib")
+set(LUA_INCLUDE_DIR "${CMAKE_CURRENT_LIST_DIR}/extern/lua")
+set(LUA_LIBS "${CMAKE_CURRENT_LIST_DIR}/extern/lua/lua53.lib")
 
-include_directories(${SDL2_INCLUDE_DIR})
+include_directories(extern)
+
+include_directories(${SDL2_INCLUDE_DIR} ${LUA_INCLUDE_DIR})
 add_executable(2DGameEngine ${SRC_FILES})
-target_link_libraries(2DGameEngine ${SDL2_LIBRARIES})
+target_link_libraries(2DGameEngine ${SDL2_LIBRARIES} ${LUA_LIBS})
 endif(WIN32)

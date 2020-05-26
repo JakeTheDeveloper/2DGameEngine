@@ -7,3 +7,12 @@
 /x64/Debug
 /2DGameEngine/x64/Debug
 2DGameEngine/CMakeCache.txt
+*.o
+*.obj
+*.o
+cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/Animation.cpp.o
+cmake-build-debug/CMakeFiles/2DGameEngine.dir/build.make
+cmake-build-debug/CMakeFiles/2DGameEngine.dir/cmake_clean.cmake
+*.pdb
+cmake-build-debug/CMakeFiles/2DGameEngine.dir/2DGameEngine/Animation.cpp.o
+cmake-build-debug
