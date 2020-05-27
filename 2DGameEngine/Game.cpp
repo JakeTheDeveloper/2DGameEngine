@@ -55,16 +55,15 @@ void Game::Initialize(const int width, const int height) {
 
 void Game::LoadLevel(uint32_t level) {
 	auto& enemy = manager.AddEntity("enemy", PLAYER_LAYER, true);
-	assetManager->AddTexture(COLLISION_TEXTURE_ID, "../assets/images/collisiontexture.png");
 
-	assetManager->AddTexture("player", std::string("../assets/images/AppleMan.png").c_str());
+	assetManager->AddTexture("player", std::string("../assets/images/lowdetailman.png").c_str());
 	assetManager->AddTexture("enemy", std::string("../assets/images/Bigbox.png").c_str());
 	assetManager->AddTexture("jungle-tiletexture", std::string("../assets/tilemaps/jungle.png").c_str());
 
-	playerEntity.AddComponent<TransformComponent>(glm::vec2(1300.f, 800.f), glm::vec2(0.f, 0.f), 100, 100, 1);
+playerEntity.AddComponent<TransformComponent>(glm::vec2(0, 0), glm::vec2(0.f, 0.f), 64, 64, 1);
 	playerEntity.AddComponent<KeyboardControlComponent>();
 	playerEntity.AddComponent<SpriteComponent>("player", 1, 1.f, false,  false);
-	playerEntity.AddComponent<ColliderComponent>("player", 1300.f, 800.f, 32, 32);
+	playerEntity.AddComponent<ColliderComponent>("player", 1300.f, 800.f, 64, 64);
 	playerEntity.AddComponent<InteractionComponent>(*interactionManager);
 
 
@@ -73,7 +72,7 @@ void Game::LoadLevel(uint32_t level) {
 	enemy.AddComponent<ColliderComponent>("enemy", 1350.f, 850.f, 200, 200);
 	enemy.AddComponent<InteractionComponent>(*interactionManager);
 
-	terrain = new Terrain("jungle-tiletexture", 4, 32);
+	terrain = new Terrain("jungle-tiletexture", 2, 32);
 	terrain->LoadTerrain("../assets/tilemaps/jungle.map", 25, 20);
 }
 
@@ -139,7 +138,7 @@ void Game::HandleCameraMovement() {
 	camera.x = camera.x > WINDOW_WIDTH ? WINDOW_WIDTH : camera.x;
 	camera.y = camera.y > WINDOW_HEIGHT ? WINDOW_HEIGHT : camera.y;
 
-	//std::cout << mainPlayerTransform->direction.x << " " << mainPlayerTransform->direction.y << std::endl;
+	std::cout << camera.x << " " << camera.y << std::endl;
 }
 
 void Game::Destroy() {
