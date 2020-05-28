@@ -62,8 +62,8 @@ void Game::LoadLevel(uint32_t level) {
 
 playerEntity.AddComponent<TransformComponent>(glm::vec2(0, 0), glm::vec2(0.f, 0.f), 64, 64, 1);
 	playerEntity.AddComponent<KeyboardControlComponent>();
-	playerEntity.AddComponent<SpriteComponent>("player", 1, 1.f, false,  false);
-	playerEntity.AddComponent<ColliderComponent>("player", 1300.f, 800.f, 64, 64);
+	playerEntity.AddComponent<SpriteComponent>("player", 1.f, 1.f, false,  false);
+	playerEntity.AddComponent<ColliderComponent>("player", 1.f, 1.f, 64, 64);
 	playerEntity.AddComponent<InteractionComponent>(*interactionManager);
 
 
@@ -72,7 +72,7 @@ playerEntity.AddComponent<TransformComponent>(glm::vec2(0, 0), glm::vec2(0.f, 0.
 	enemy.AddComponent<ColliderComponent>("enemy", 1350.f, 850.f, 200, 200);
 	enemy.AddComponent<InteractionComponent>(*interactionManager);
 
-	terrain = new Terrain("jungle-tiletexture", 2, 32);
+	terrain = new Terrain("jungle-tiletexture", MAP_SCALE, 32);
 	terrain->LoadTerrain("../assets/tilemaps/jungle.map", 25, 20);
 }
 
@@ -129,16 +129,21 @@ void Game::Render() {
 void Game::HandleCameraMovement() {
 	auto* mainPlayerTransform = playerEntity.GetComponent<TransformComponent>();
 
+	auto tileMapWidth = 25 * 32;
+	auto tileMapHeight = 20 * 32;
+
 	camera.x = mainPlayerTransform->position.x - (WINDOW_WIDTH / 2);
 	camera.y = mainPlayerTransform->position.y - (WINDOW_HEIGHT / 2);
 
 	// clamp
 	camera.x = camera.x < 0 ? 0 : camera.x;
 	camera.y = camera.y < 0 ? 0 : camera.y;
-	camera.x = camera.x > WINDOW_WIDTH ? WINDOW_WIDTH : camera.x;
-	camera.y = camera.y > WINDOW_HEIGHT ? WINDOW_HEIGHT : camera.y;
+	camera.x = camera.x > tileMapWidth / MAP_SCALE ? tileMapWidth / MAP_SCALE : camera.x;
+	camera.y = camera.y > WINDOW_HEIGHT ? tileMapHeight / MAP_SCALE : camera.y;
 
-	std::cout << camera.x << " " << camera.y << std::endl;
+	std::cout << "Camera: " << camera.x << " " << camera.y << std::endl;
+	std::cout << "Player: " << mainPlayerTransform->position.x << " " << mainPlayerTransform->position.y << std::endl;
+
 }
 
 void Game::Destroy() {

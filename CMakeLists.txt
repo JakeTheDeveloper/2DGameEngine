@@ -25,8 +25,15 @@ if(APPLE)
     set(SDL_IMAGE_LIBS -L/usr/local/Cellar/sdl2_image/2.0.5/lib -lSDL2_image)
     add_executable(2DGameEngine ${SRC_FILES})
 
-    include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
-    target_link_libraries(2DGameEngine ${SDL2_LIBRARIES} ${SDL_IMAGE_LIBS})
+    find_package(LUA REQUIRED)
+
+    if(LUA_FOUND)
+        message(STATUS "Lua Found")
+    endif(LUA_FOUND)
+
+    include_directories(extern)
+    include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${LUA_INCLUDE_DIRS})
+    target_link_libraries(2DGameEngine ${SDL2_LIBRARIES} ${SDL_IMAGE_LIBS} ${LUA_LIBRARIES})
 endif(APPLE)
 
 if(WIN32)
@@ -39,6 +46,6 @@ set(LUA_LIBS "${CMAKE_CURRENT_LIST_DIR}/extern/lua/lua53.lib")
 include_directories(extern)
 
 include_directories(${SDL2_INCLUDE_DIR} ${LUA_INCLUDE_DIR})
-add_executable(2DGameEngine ${SRC_FILES})
+add_executable(2DGameEngine ${SRC_FILES} 2DGameEngine/LuaManager.cpp 2DGameEngine/LuaManager.h)
 target_link_libraries(2DGameEngine ${SDL2_LIBRARIES} ${LUA_LIBS})
 endif(WIN32)

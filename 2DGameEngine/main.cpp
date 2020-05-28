@@ -78,7 +78,7 @@ int main(int argc, char* argv[]) {
 
     lua_close(L);
 
-	game->Initialize(width, height);
+	game->Initialize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	auto fpsCounter = 0;
 	time_t startTime = time(0);
 	while(game->isRunning) {
