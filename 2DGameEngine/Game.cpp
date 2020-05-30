@@ -130,7 +130,7 @@ void Game::HandleCameraMovement() {
 	auto* mainPlayerTransform = playerEntity.GetComponent<TransformComponent>();
 
 	auto tileMapWidth = 25 * 32;
-	auto tileMapHeight = 20 * 32;
+	auto tileMapHeight = 30 * 32; // Why is this 30 * 32?
 
 	camera.x = mainPlayerTransform->position.x - (WINDOW_WIDTH / 2);
 	camera.y = mainPlayerTransform->position.y - (WINDOW_HEIGHT / 2);
@@ -139,11 +139,7 @@ void Game::HandleCameraMovement() {
 	camera.x = camera.x < 0 ? 0 : camera.x;
 	camera.y = camera.y < 0 ? 0 : camera.y;
 	camera.x = camera.x > tileMapWidth / MAP_SCALE ? tileMapWidth / MAP_SCALE : camera.x;
-	camera.y = camera.y > WINDOW_HEIGHT ? tileMapHeight / MAP_SCALE : camera.y;
-
-	std::cout << "Camera: " << camera.x << " " << camera.y << std::endl;
-	std::cout << "Player: " << mainPlayerTransform->position.x << " " << mainPlayerTransform->position.y << std::endl;
-
+	camera.y = camera.y > tileMapHeight / MAP_SCALE ? tileMapHeight / MAP_SCALE : camera.y;
 }
 
 void Game::Destroy() {
