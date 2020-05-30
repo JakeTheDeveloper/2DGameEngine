@@ -4,6 +4,7 @@
 #include <SDL_image.h>
 //#include <SDL_ttf.h>
 #include "Entity.h"
+#include "MouseControlComponent.h"
 #include "Component.h"
 #include "EntityManager.h"
 #include "AssetManager.h"

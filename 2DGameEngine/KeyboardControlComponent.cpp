@@ -60,11 +60,12 @@ void KeyboardControlComponent::HandleInput(SDL_Event& sdlEvent) {
 			owner->GetComponent<InteractionComponent>()->Interact();
 			break;
 		default:
-
 			break;
 		}
 		break;
-
+    case SDL_MOUSEBUTTONDOWN:
+        SetMouseDestination();
+        break;
 	case SDL_KEYUP:
 		switch (sdlEvent.key.keysym.sym) {
 		case SDLK_w:
@@ -85,17 +86,23 @@ void KeyboardControlComponent::HandleInput(SDL_Event& sdlEvent) {
 			break;
 		}
 		break;
-
 	default:
 		break;
 	}
-	auto x = 0;
-	auto y = 0;
-	SDL_GetMouseState(&x, &y);
-	std::cout << "Mouse Pos: " <<  x + Game::camera.x << " " << y + Game::camera.y << std::endl;
-    std::cout << "Player Pos: " <<  ownerTransform->position.x << " " << ownerTransform->position.y << std::endl;
 }
 
 void KeyboardControlComponent::Render() {
 
+}
+
+void KeyboardControlComponent::SetMouseDestination() {
+    if(owner->HasComponent<MouseControlComponent>()){
+        auto x = 0;
+        auto y = 0;
+        auto tc = owner->GetComponent<TransformComponent>();
+        auto mcc = owner ->GetComponent<MouseControlComponent>();
+        SDL_GetMouseState(&x, &y);
+        mcc->dst = new glm::vec2(x, y);
+        mcc->start = &ownerTransform->position;
+    }
 }

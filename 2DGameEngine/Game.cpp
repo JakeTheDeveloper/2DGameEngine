@@ -65,7 +65,7 @@ playerEntity.AddComponent<TransformComponent>(glm::vec2(0, 0), glm::vec2(0.f, 0.
 	playerEntity.AddComponent<SpriteComponent>("player", 1.f, 1.f, false,  false);
 	playerEntity.AddComponent<ColliderComponent>("player", 1.f, 1.f, 64, 64);
 	playerEntity.AddComponent<InteractionComponent>(*interactionManager);
-
+    playerEntity.AddComponent<MouseControlComponent>();
 
 	enemy.AddComponent<TransformComponent>(glm::vec2(1350.f, 850.f), glm::vec2(0.f, 0.f), 200, 200, 1);
 	enemy.AddComponent<SpriteComponent>("enemy", 1, 1.f, false, false);
