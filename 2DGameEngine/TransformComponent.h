@@ -14,7 +14,7 @@ struct TransformComponent: public Component {
 	float topRight;
 	float botRight;
 	int scale;
-
+    TransformComponent();
 	TransformComponent(glm::vec2 position, glm::vec2 velocity, uint32_t w, uint32_t h, int scale);
 	void Initialize() override;
 	void Update(float deltaTime) override;

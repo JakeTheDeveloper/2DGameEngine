@@ -27,3 +27,7 @@ void TransformComponent::Update(float deltaTime) {
 void TransformComponent::Render() {
 
 }
+
+TransformComponent::TransformComponent() {
+
+}
