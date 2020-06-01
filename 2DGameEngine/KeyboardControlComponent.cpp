@@ -36,61 +36,6 @@ void KeyboardControlComponent::Update(float deltaTime) {
 	ownerTransform->velocity.y += _yVel * deltaTime;
 }
 
-void KeyboardControlComponent::HandleInput(SDL_Event& sdlEvent) {
-	switch (sdlEvent.type) {
-	case SDL_KEYDOWN:
-		switch (sdlEvent.key.keysym.sym) {
-		case SDLK_w:
-			_yVel = -10.f;
-			owner->facingDirection = FacingDirection::FACING_UP;
-			break;
-		case SDLK_a:
-			_xVel = -10.f;
-			owner->facingDirection = FacingDirection::FACING_LEFT;
-			break;
-		case SDLK_s:
-			_yVel = 10.f;
-			owner->facingDirection = FacingDirection::FACING_DOWN;
-			break;
-		case SDLK_d:
-			_xVel = 10.f;
-			owner->facingDirection = FacingDirection::FACING_RIGHT;
-			break;
-		case SDLK_e:
-			owner->GetComponent<InteractionComponent>()->Interact();
-			break;
-		default:
-			break;
-		}
-		break;
-    case SDL_MOUSEBUTTONDOWN:
-        SetMouseDestination();
-        break;
-	case SDL_KEYUP:
-		switch (sdlEvent.key.keysym.sym) {
-		case SDLK_w:
-			if (_yVel < 0)
-				_yVel = 0;
-			break;
-		case SDLK_a:
-			if (_xVel < 0)
-				_xVel = 0;
-			break;
-		case SDLK_s:
-			if (_yVel > 0)
-				_yVel = 0;
-			break;
-		case SDLK_d:
-			if (_xVel > 0)
-				_xVel = 0;
-			break;
-		}
-		break;
-	default:
-		break;
-	}
-}
-
 void KeyboardControlComponent::Render() {
 
 }
@@ -99,10 +44,11 @@ void KeyboardControlComponent::SetMouseDestination() {
     if(owner->HasComponent<MouseControlComponent>()){
         auto x = 0;
         auto y = 0;
-        auto tc = owner->GetComponent<TransformComponent>();
         auto mcc = owner ->GetComponent<MouseControlComponent>();
         SDL_GetMouseState(&x, &y);
         mcc->dst = new glm::vec2(x, y);
         mcc->start = &ownerTransform->position;
+        Game::mousePos.x = x;
+        Game::mousePos.y = y;
     }
 }

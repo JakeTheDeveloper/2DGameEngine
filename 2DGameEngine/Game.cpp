@@ -11,7 +11,9 @@
 #include "Terrain.h"
 
 EntityManager manager;
+glm::vec2 Game::mousePos = glm::vec2(0.f);
 InteractionManager* Game::interactionManager = new InteractionManager();
+InputManager* Game::inputManager = new InputManager();
 AssetManager* Game::assetManager = new AssetManager(&manager);
 SDL_Renderer* Game::renderer;
 Entity& playerEntity = manager.AddEntity("player", PLAYER_LAYER, true);
@@ -60,7 +62,7 @@ void Game::LoadLevel(uint32_t level) {
 	assetManager->AddTexture("enemy", std::string("../assets/images/Bigbox.png").c_str());
 	assetManager->AddTexture("jungle-tiletexture", std::string("../assets/tilemaps/jungle.png").c_str());
 
-playerEntity.AddComponent<TransformComponent>(glm::vec2(0, 0), glm::vec2(0.f, 0.f), 64, 64, 1);
+    playerEntity.AddComponent<TransformComponent>(glm::vec2(0, 0), glm::vec2(0.f, 0.f), 64, 64, 1);
 	playerEntity.AddComponent<KeyboardControlComponent>();
 	playerEntity.AddComponent<SpriteComponent>("player", 1.f, 1.f, false,  false);
 	playerEntity.AddComponent<ColliderComponent>("player", 1.f, 1.f, 64, 64);
@@ -78,8 +80,8 @@ playerEntity.AddComponent<TransformComponent>(glm::vec2(0, 0), glm::vec2(0.f, 0.
 
 void Game::ProcessInput() {
 	SDL_Event event;
-
 	while (SDL_PollEvent(&event)) {
+	    
 		switch (event.type) {
 		case SDL_QUIT:
 			isRunning = false;

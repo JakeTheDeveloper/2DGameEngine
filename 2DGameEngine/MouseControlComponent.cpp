@@ -12,6 +12,7 @@ void MouseControlComponent::Update(float deltaTime) {
         auto vecMag = sqrt((pow((directionVecX), 2) + pow(directionVecY, 2)));
         auto normalizedVec = glm::vec2(directionVecX / vecMag, directionVecY / vecMag);
         ownerTransform->position += ((normalizedVec * glm::vec2(90)) * deltaTime);
+
         if(start->x - ownerTransform->position.x >= (dst->x - start->x) && start->y - ownerTransform->position.y >= (dst->y - start->y)){
             ownerTransform->position = *dst;
             dst = nullptr;
@@ -24,9 +25,7 @@ void MouseControlComponent::Render() {
 
 }
 
-MouseControlComponent::MouseControlComponent() {
-
-}
+MouseControlComponent::MouseControlComponent() = default;
 
 MouseControlComponent::~MouseControlComponent() {
     if(start != nullptr)

@@ -3,10 +3,10 @@
 #include "EntityManager.h"
 struct MouseControlComponent : public Component {
     MouseControlComponent();
-    TransformComponent* ownerTransform;
+    TransformComponent* ownerTransform{};
     glm::vec2* start = nullptr;
     glm::vec2* dst = nullptr;
-    ~MouseControlComponent();
+    ~MouseControlComponent() override;
     void Initialize() override;
     void Update(float deltaTime) override;
     void Render() override;
