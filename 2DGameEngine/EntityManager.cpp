@@ -164,3 +164,23 @@ std::vector<Entity*> EntityManager::GetEntitiesByLayer(LayerType layer) const {
 	}
 	return selectedEntities;
 }
+
+EntityManager::~EntityManager() {
+    if(selectedEntities.size() > 0) {
+        for(auto se: selectedEntities)
+            delete se;
+        selectedEntities.clear();
+    }
+
+    if(interactableEntities.size() > 0) {
+        for(auto ie: interactableEntities)
+            delete ie;
+        interactableEntities.clear();
+    }
+
+    if(entities.size() > 0) {
+        for(auto e: entities)
+            delete e;
+        interactableEntities.clear();
+    }
+}

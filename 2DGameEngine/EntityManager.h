@@ -8,8 +8,9 @@
 struct EntityManager {
 	std::vector<CollisionEvent*> collisionQueue;
 	std::vector<Entity*> entities;
-    Entity* selectedEntity = nullptr;
+    std::vector<Entity*> selectedEntities;
     std::vector<Entity*> interactableEntities;
+    ~EntityManager();
 	void ClearData();
 	void Update(float deltaTime);
 	void Render();

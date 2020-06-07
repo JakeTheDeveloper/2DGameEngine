@@ -58,24 +58,25 @@ void Game::Initialize(const int width, const int height) {
 
 
 void Game::LoadLevel(uint32_t level) {
-	auto& enemy = manager.AddEntity("enemy", PLAYER_LAYER, true);
-    manager.selectedEntity = &playerEntity;
+    auto& unit = manager.AddEntity("unit", PLAYER_LAYER, true);
+    manager.selectedEntities.push_back(&playerEntity);
+    manager.selectedEntities.push_back(&unit);
 
-	assetManager->AddTexture("player", std::string("../assets/images/lowdetailman.png").c_str());
+    assetManager->AddTexture("player", std::string("../assets/images/lowdetailman.png").c_str());
+    assetManager->AddTexture("unit", std::string("../assets/images/lowdetailman.png").c_str());
 	assetManager->AddTexture("enemy", std::string("../assets/images/Bigbox.png").c_str());
 	assetManager->AddTexture("jungle-tiletexture", std::string("../assets/tilemaps/jungle.png").c_str());
 
     playerEntity.AddComponent<TransformComponent>(glm::vec2(0, 0), glm::vec2(0.f, 0.f), 64, 64, 1);
 	playerEntity.AddComponent<KeyboardControlComponent>(interactionManager);
-	playerEntity.AddComponent<SpriteComponent>("player", 1.f, 1.f, false,  false);
-	playerEntity.AddComponent<ColliderComponent>("player", 1.f, 1.f, 64, 64);
+	playerEntity.AddComponent<SpriteComponent>("player", 1, 1, false,  false);
+//	playerEntity.AddComponent<ColliderComponent>("player", 1.f, 1.f, 64, 64);
 	playerEntity.AddComponent<InteractionComponent>(*interactionManager);
     playerEntity.AddComponent<MouseControlComponent>();
 
-	enemy.AddComponent<TransformComponent>(glm::vec2(1350.f, 850.f), glm::vec2(0.f, 0.f), 200, 200, 1);
-	enemy.AddComponent<SpriteComponent>("enemy", 1, 1.f, false, false);
-	enemy.AddComponent<ColliderComponent>("enemy", 1350.f, 850.f, 200, 200);
-	enemy.AddComponent<InteractionComponent>(*interactionManager);
+    unit.AddComponent<TransformComponent>(glm::vec2(50, 100), glm::vec2(0.f), 64, 64, 1);
+    unit.AddComponent<SpriteComponent>("unit", 1, 1, false, false);
+    unit.AddComponent<MouseControlComponent>();
 
 	terrain = new Terrain("jungle-tiletexture", MAP_SCALE, 32);
 	terrain->LoadTerrain("../assets/tilemaps/jungle.map", 25, 20);
@@ -85,12 +86,15 @@ void Game::ProcessInput() {
     inputManager->GetInputEvents();
     for(auto& event: inputManager->eventQueue){
         if(event->type == SDL_KEYDOWN || event->type == SDL_KEYUP){
-            if(manager.selectedEntity->HasComponent<KeyboardControlComponent>()){
-                manager.selectedEntity->GetComponent<KeyboardControlComponent>()->HandleInput(*event);
+            for(auto& se: manager.selectedEntities){
+                if(se->HasComponent<KeyboardControlComponent>()){
+                    se->GetComponent<KeyboardControlComponent>()->HandleInput(*event);
+                }
             }
         } else if(event->type == SDL_MOUSEBUTTONDOWN){
-            if(manager.selectedEntity->HasComponent<MouseControlComponent>()){
-                manager.selectedEntity->GetComponent<MouseControlComponent>()->HandleMouseInput(*event);
+            for(auto& se: manager.selectedEntities) {
+                if (se->HasComponent<MouseControlComponent>())
+                    se->GetComponent<MouseControlComponent>()->HandleMouseInput(*event);
             }
         }
     }
@@ -99,7 +103,7 @@ void Game::ProcessInput() {
 
 void Game::Update() {
 	auto delay = (FRAME_TARGET_TIME - (SDL_GetTicks() - _ticksLastFrame));
-	
+
 	if(delay > 0 && delay <= FRAME_TARGET_TIME) {
 		SDL_Delay(delay);
 	}
@@ -112,8 +116,8 @@ void Game::Update() {
 
 	HandleCameraMovement();
 	interactionManager->HandleInteractions();
-	manager.CheckCollisions();
-	manager.HandleCollisions();
+//	manager.CheckCollisions();
+//	manager.HandleCollisions();
 }
 
 void Game::Render() {

@@ -9,6 +9,9 @@ void MouseControlComponent::Initialize() {
 
 void MouseControlComponent::Update(float deltaTime) {
     if(dst != nullptr){
+        if(start == nullptr) {
+            start = new glm::vec2(ownerTransform->position);
+        }
 
         if(!isMoving) {
             isMoving = true;
@@ -42,6 +45,7 @@ MouseControlComponent::~MouseControlComponent() {
 }
 
 void MouseControlComponent::HandleMouseInput(SDL_Event event) {
-    start = new glm::vec2(ownerTransform->position);
     dst = new glm::vec2(Game::mousePos.x, Game::mousePos.y);
+    isMoving = false;
+    start = nullptr;
 }
