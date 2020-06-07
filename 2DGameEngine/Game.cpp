@@ -8,9 +8,11 @@
 #include "KeyboardControlComponent.h"
 #include "../extern/glm/glm.hpp"
 #include "ColliderComponent.h"
+#include "InputManager.h"
 #include "Terrain.h"
 
 EntityManager manager;
+bool Game::isRunning = false;
 glm::vec2 Game::mousePos = glm::vec2(0.f);
 InteractionManager* Game::interactionManager = new InteractionManager();
 InputManager* Game::inputManager = new InputManager();
@@ -57,13 +59,14 @@ void Game::Initialize(const int width, const int height) {
 
 void Game::LoadLevel(uint32_t level) {
 	auto& enemy = manager.AddEntity("enemy", PLAYER_LAYER, true);
+    manager.selectedEntity = &playerEntity;
 
 	assetManager->AddTexture("player", std::string("../assets/images/lowdetailman.png").c_str());
 	assetManager->AddTexture("enemy", std::string("../assets/images/Bigbox.png").c_str());
 	assetManager->AddTexture("jungle-tiletexture", std::string("../assets/tilemaps/jungle.png").c_str());
 
     playerEntity.AddComponent<TransformComponent>(glm::vec2(0, 0), glm::vec2(0.f, 0.f), 64, 64, 1);
-	playerEntity.AddComponent<KeyboardControlComponent>();
+	playerEntity.AddComponent<KeyboardControlComponent>(interactionManager);
 	playerEntity.AddComponent<SpriteComponent>("player", 1.f, 1.f, false,  false);
 	playerEntity.AddComponent<ColliderComponent>("player", 1.f, 1.f, 64, 64);
 	playerEntity.AddComponent<InteractionComponent>(*interactionManager);
@@ -79,18 +82,19 @@ void Game::LoadLevel(uint32_t level) {
 }
 
 void Game::ProcessInput() {
-	SDL_Event event;
-	while (SDL_PollEvent(&event)) {
-	    
-		switch (event.type) {
-		case SDL_QUIT:
-			isRunning = false;
-			break;
-		default:
-			manager.GetEntityByName("player").GetComponent<KeyboardControlComponent>()->HandleInput(event);
-			break;
-		};
-	}
+    inputManager->GetInputEvents();
+    for(auto& event: inputManager->eventQueue){
+        if(event->type == SDL_KEYDOWN || event->type == SDL_KEYUP){
+            if(manager.selectedEntity->HasComponent<KeyboardControlComponent>()){
+                manager.selectedEntity->GetComponent<KeyboardControlComponent>()->HandleInput(*event);
+            }
+        } else if(event->type == SDL_MOUSEBUTTONDOWN){
+            if(manager.selectedEntity->HasComponent<MouseControlComponent>()){
+                manager.selectedEntity->GetComponent<MouseControlComponent>()->HandleMouseInput(*event);
+            }
+        }
+    }
+    inputManager->ClearEventQueue();
 }
 
 void Game::Update() {

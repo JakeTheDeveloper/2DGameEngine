@@ -10,14 +10,12 @@ private:
 	float _xVel = 0.f;
 	float _yVel = 0.f;
 public:
-	InteractionManager interactionManager = InteractionManager();
+	InteractionManager* interactionManager;
 	TransformComponent* ownerTransform;
 	SpriteComponent* sprite;
-	KeyboardControlComponent();
+	KeyboardControlComponent(InteractionManager* im);
+	void HandleInput(SDL_Event event);
 	void Initialize() override;
 	void Update(float deltaTime) override;
 	void Render() override;
-	void HandleInput(SDL_Event &event);
-private:
-	void SetMouseDestination();
 };

@@ -8,11 +8,12 @@
 #include "Component.h"
 #include "EntityManager.h"
 #include "AssetManager.h"
-#include "InputManager.h"
+
 // vvv Don't remove this otherwise SDL dies.
 #undef main
 
 struct AssetManager;
+struct InputManager;
 
 struct Game {
 private:
@@ -28,9 +29,9 @@ public:
 	static InputManager* inputManager;
 	static AssetManager* assetManager;
 	static SDL_Rect camera;
-	static glm::vec2 mousePos;
-	float deltaTime = 0.0f;
-	bool isRunning;
+    static glm::vec2 mousePos;
+    static bool isRunning;
+    float deltaTime = 0.0f;
 	void LoadLevel(uint32_t levelNumber);
 	void Initialize(const int width, const int height);
     void ProcessInput();

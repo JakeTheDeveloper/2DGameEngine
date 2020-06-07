@@ -146,12 +146,10 @@ void EntityManager::HandleCollisions() {
 }
 
 void EntityManager::ClearCollisionQueue() {
-	if (collisionQueue.size() > 0)
-	{
+	if (collisionQueue.size() > 0) {
 		for (auto ce : collisionQueue) {
 			delete ce;
 		}
-
 		collisionQueue.clear();
 	}
 }
