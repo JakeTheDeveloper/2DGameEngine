@@ -22,7 +22,6 @@ void MouseControlComponent::Update(float deltaTime) {
 
         if(isMoving){
             ownerTransform->position += direction * 150.f * deltaTime;
-            std::cout << start->x << std::endl;
             if(glm::distance(*start, ownerTransform->position) >= distance){
                 ownerTransform->position = *dst;
                 dst = nullptr;
@@ -45,7 +44,7 @@ MouseControlComponent::~MouseControlComponent() {
 }
 
 void MouseControlComponent::HandleMouseInput(SDL_Event event) {
-    dst = new glm::vec2(Game::mousePos.x, Game::mousePos.y);
+    dst = new glm::vec2(Game::cursor.GetComponent<TransformComponent>()->position.x, Game::cursor.GetComponent<TransformComponent>()->position.y);
     isMoving = false;
     start = nullptr;
 }

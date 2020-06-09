@@ -83,8 +83,8 @@ int main(int argc, char* argv[]) {
 	time_t startTime = time(0);
 	while(game->isRunning) {
 		if (difftime(time(0), startTime) > 1) {
-			std::cout << fpsCounter << std::endl;
-			fpsCounter = 0;
+//			std::cout << fpsCounter << std::endl;
+//			fpsCounter = 0;
 			startTime = time(0);
 		}
 		game->ProcessInput();

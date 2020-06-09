@@ -19,13 +19,13 @@ SpriteComponent::SpriteComponent(std::string id, uint32_t numFrames, uint32_t an
 		_animations.emplace("LeftAnimation", leftAnimation);
 		_animations.emplace("UpAnimation", upAnimation);
 
-		_animationIndex = 0;
-		_currentAnimationName = "DownAnimation";
+        animationIndex = 0;
+        currentAnimationName = "DownAnimation";
 	} else {
 		auto singleAnimation = Animation(0, numFrames, animationSpeed);
 		_animations.emplace("Single Animation", singleAnimation);
-		_animationIndex = 0;
-		_currentAnimationName = "Single Animation";
+        animationIndex = 0;
+        currentAnimationName = "Single Animation";
 	}
 	
 	Play();
@@ -33,14 +33,14 @@ SpriteComponent::SpriteComponent(std::string id, uint32_t numFrames, uint32_t an
 }
 
 void SpriteComponent::Play() {
-	_numFrames = _animations[_currentAnimationName].numFrames;
-	_animationSpeed = _animations[_currentAnimationName].animationSpeed;
-	_animationIndex = _animations[_currentAnimationName].index;
-	_currentAnimationName = _currentAnimationName;
+	_numFrames = _animations[currentAnimationName].numFrames;
+	_animationSpeed = _animations[currentAnimationName].animationSpeed;
+    animationIndex = _animations[currentAnimationName].index;
+    currentAnimationName = currentAnimationName;
 }
 
 void SpriteComponent::SetTexture(std::string assetTextureId) {
-	_texture = Game::assetManager->GetTexture(assetTextureId);
+	texture = Game::assetManager->GetTexture(assetTextureId);
 }
 
 void SpriteComponent::Initialize() {
@@ -56,7 +56,7 @@ void SpriteComponent::Update(float deltaTime) {
 	if(_isAnimated) {
 		_srcRect.x = _srcRect.w * static_cast<int>((SDL_GetTicks() / _animationSpeed) % _numFrames);
 	}
-	_srcRect.y = _animationIndex * _attachedObjectTransform->scale;
+	_srcRect.y = animationIndex * _attachedObjectTransform->scale;
 
 	_dstRect.x = static_cast<int>(_attachedObjectTransform->position.x) - (_isFixed ? 0 : Game::camera.x);
 	_dstRect.y = static_cast<int>(_attachedObjectTransform->position.y) - (_isFixed ? 0 : Game::camera.y);
@@ -65,5 +65,5 @@ void SpriteComponent::Update(float deltaTime) {
 }
 
 void SpriteComponent::Render() {
-	TextureManager::Draw(_texture, _srcRect, _dstRect, SpriteFlip);
+	TextureManager::Draw(texture, _srcRect, _dstRect, SpriteFlip);
 }

@@ -7,6 +7,4 @@ struct InputManager {
     ~InputManager();
     void GetInputEvents();
     void ClearEventQueue();
-private:
-    void SetMouseDestination();
 };

@@ -11,14 +11,15 @@
 #include "InputManager.h"
 #include "Terrain.h"
 
+
 EntityManager manager;
 bool Game::isRunning = false;
-glm::vec2 Game::mousePos = glm::vec2(0.f);
 InteractionManager* Game::interactionManager = new InteractionManager();
 InputManager* Game::inputManager = new InputManager();
 AssetManager* Game::assetManager = new AssetManager(&manager);
 SDL_Renderer* Game::renderer;
 Entity& playerEntity = manager.AddEntity("player", PLAYER_LAYER, true);
+Entity Game::cursor = manager.AddEntity("cursor", LayerType::UI_LAYER, false);
 SDL_Rect Game::camera = { 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT };
 Terrain* terrain;
 
@@ -27,7 +28,8 @@ Game::Game() {
 }
 
 Game::~Game() {
-	
+	delete inputManager;
+	delete assetManager;
 }
 
 void Game::Initialize(const int width, const int height) {
@@ -63,6 +65,7 @@ void Game::LoadLevel(uint32_t level) {
     manager.selectedEntities.push_back(&unit);
 
     assetManager->AddTexture("player", std::string("../assets/images/lowdetailman.png").c_str());
+    assetManager->AddTexture("mouse_highlight", std::string("../assets/images/selection.png").c_str());
     assetManager->AddTexture("unit", std::string("../assets/images/lowdetailman.png").c_str());
 	assetManager->AddTexture("enemy", std::string("../assets/images/Bigbox.png").c_str());
 	assetManager->AddTexture("jungle-tiletexture", std::string("../assets/tilemaps/jungle.png").c_str());
@@ -77,6 +80,10 @@ void Game::LoadLevel(uint32_t level) {
     unit.AddComponent<TransformComponent>(glm::vec2(50, 100), glm::vec2(0.f), 64, 64, 1);
     unit.AddComponent<SpriteComponent>("unit", 1, 1, false, false);
     unit.AddComponent<MouseControlComponent>();
+
+    cursor.AddComponent<TransformComponent>(glm::vec2(0), glm::vec2(0.0f), 32, 32, 1);
+    cursor.AddComponent<SpriteComponent>("mouse_highlight", 1, 1, false, false);
+    cursor.AddComponent<CursorComponent>();
 
 	terrain = new Terrain("jungle-tiletexture", MAP_SCALE, 32);
 	terrain->LoadTerrain("../assets/tilemaps/jungle.map", 25, 20);
@@ -112,6 +119,7 @@ void Game::Update() {
 	deltaTime = (deltaTime > 0.05) ? 0.05f : deltaTime;
 	_ticksLastFrame = SDL_GetTicks();
 
+	cursor.Update(deltaTime);
 	manager.Update(deltaTime);
 
 	HandleCameraMovement();
