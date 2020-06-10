@@ -3,8 +3,8 @@
 #include "SpriteComponent.h"
 #include "SDL.h"
 void CursorComponent::Update(float deltaTime) {
-    owner->GetComponent<TransformComponent>()->position.x = position.x;
-    owner->GetComponent<TransformComponent>()->position.y = position.y;
+    owner->GetComponent<TransformComponent>()->position.x = position.x + Game::camera.x;
+    owner->GetComponent<TransformComponent>()->position.y = position.y + Game::camera.y;
 }
 
 void CursorComponent::Render() {
@@ -17,5 +17,15 @@ void CursorComponent::Render() {
         drawPositionY,
         TILESIZE, TILESIZE};
 
-    TextureManager::Draw(owner->GetComponent<SpriteComponent>()->texture, srcRect, dstRect, SDL_FLIP_NONE);
+    TextureManager::Draw(texture, srcRect, dstRect, SDL_FLIP_NONE);
+}
+
+CursorComponent::~CursorComponent() {
+    if(texture != nullptr){
+        delete texture;
+    }
+}
+
+CursorComponent::CursorComponent() {
+    texture = TextureManager::LoadTexture(selectionFileName);
 }

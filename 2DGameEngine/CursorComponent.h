@@ -4,10 +4,12 @@
 #include "SDL.h"
 
 struct CursorComponent: public Component  {
+    const char* selectionFileName = "../assets/images/selection.png";
     glm::ivec2 position;
+    SDL_Texture* texture;
     SDL_Rect srcRect = SDL_Rect{0,0,32,32};
-    CursorComponent() = default;
-    ~CursorComponent() = default;
+    CursorComponent();
+    ~CursorComponent();
 
     void Update(float deltaTime) override;
     void Render() override ;

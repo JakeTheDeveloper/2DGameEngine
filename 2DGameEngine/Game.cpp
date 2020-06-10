@@ -82,7 +82,6 @@ void Game::LoadLevel(uint32_t level) {
     unit.AddComponent<MouseControlComponent>();
 
     cursor.AddComponent<TransformComponent>(glm::vec2(0), glm::vec2(0.0f), 32, 32, 1);
-    cursor.AddComponent<SpriteComponent>("mouse_highlight", 1, 1, false, false);
     cursor.AddComponent<CursorComponent>();
 
 	terrain = new Terrain("jungle-tiletexture", MAP_SCALE, 32);
