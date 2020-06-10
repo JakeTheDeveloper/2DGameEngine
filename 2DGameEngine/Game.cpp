@@ -118,8 +118,10 @@ void Game::Update() {
 	deltaTime = (deltaTime > 0.05) ? 0.05f : deltaTime;
 	_ticksLastFrame = SDL_GetTicks();
 
-	cursor.Update(deltaTime);
 	manager.Update(deltaTime);
+
+	std::cout << playerEntity.GetComponent<TransformComponent>()->position.x << std::endl;
+	std::cout << playerEntity.GetComponent<TransformComponent>()->position.y << std::endl;
 
 	HandleCameraMovement();
 	interactionManager->HandleInteractions();

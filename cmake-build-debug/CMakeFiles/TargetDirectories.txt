@@ -1,3 +1,0 @@
-/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/jakedonese/CodeProjects/2DGameEngine/cmake-build-debug/CMakeFiles/2DGameEngine.dir
