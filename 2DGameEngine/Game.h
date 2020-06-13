@@ -24,7 +24,6 @@ private:
 public:
 	Game();
 	~Game();
-	
 	static SDL_Renderer* renderer;
 	static InteractionManager* interactionManager;
 	static InputManager* inputManager;

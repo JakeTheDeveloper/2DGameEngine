@@ -1,4 +1,5 @@
 #include "TileComponent.h"
+#include "Game.h"
 
 TileComponent::TileComponent(uint32_t srcRectX, uint32_t srcRectY, uint32_t x, uint32_t  y, uint32_t tileSize, int tileScale, std::string assetTextureId) {
 	texture = Game::assetManager->GetTexture(assetTextureId);
@@ -16,6 +17,8 @@ TileComponent::TileComponent(uint32_t srcRectX, uint32_t srcRectY, uint32_t x, u
 
 	position.x = x;
 	position.y = y;
+
+	cursorPosition = Game::cursor.GetComponent<TransformComponent>()->position;
 }
 
 TileComponent::~TileComponent() {
@@ -29,4 +32,5 @@ void TileComponent::Update(float deltaTime) {
 
 void TileComponent::Render() {
 	TextureManager::Draw(texture, srcRect, dstRect, SDL_FLIP_NONE);
+	if(cursorPosition)
 }
