@@ -14,12 +14,13 @@
 
 EntityManager manager;
 bool Game::isRunning = false;
+WorldManager* Game::worldManager = new WorldManager();
 InteractionManager* Game::interactionManager = new InteractionManager();
 InputManager* Game::inputManager = new InputManager();
 AssetManager* Game::assetManager = new AssetManager(&manager);
 SDL_Renderer* Game::renderer;
 Entity& playerEntity = manager.AddEntity("player", PLAYER_LAYER, true);
-Entity Game::cursor = manager.AddEntity("cursor", LayerType::UI_LAYER, false);
+Entity& Game::cursor = manager.AddEntity("cursor", LayerType::UI_LAYER, false);
 SDL_Rect Game::camera = { 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT };
 Terrain* terrain;
 
@@ -28,8 +29,10 @@ Game::Game() {
 }
 
 Game::~Game() {
-	delete inputManager;
-	delete assetManager;
+    if(inputManager != nullptr)
+	    delete inputManager;
+    if(assetManager != nullptr)
+	    delete assetManager;
 }
 
 void Game::Initialize(const int width, const int height) {
@@ -84,8 +87,8 @@ void Game::LoadLevel(uint32_t level) {
     cursor.AddComponent<TransformComponent>(glm::vec2(0), glm::vec2(0.0f), 32, 32, 1);
     cursor.AddComponent<CursorComponent>();
 
-	terrain = new Terrain("jungle-tiletexture", MAP_SCALE, 32);
-	terrain->LoadTerrain("../assets/tilemaps/jungle.map", 25, 20);
+	terrain = new Terrain("jungle-tiletexture", MAP_SCALE, TILE_SIZE);
+	terrain->LoadTerrain("../assets/tilemaps/jungle.map", MAP_SIZE_X, MAP_SIZE_Y);
 }
 
 void Game::ProcessInput() {
@@ -110,18 +113,15 @@ void Game::ProcessInput() {
 void Game::Update() {
 	auto delay = (FRAME_TARGET_TIME - (SDL_GetTicks() - _ticksLastFrame));
 
-	if(delay > 0 && delay <= FRAME_TARGET_TIME) {
-		SDL_Delay(delay);
-	}
+//	if(delay > 0 && delay <= FRAME_TARGET_TIME) {
+//		SDL_Delay(delay);
+//	}
 
 	deltaTime = (SDL_GetTicks() - _ticksLastFrame) / 1000;
 	deltaTime = (deltaTime > 0.05) ? 0.05f : deltaTime;
 	_ticksLastFrame = SDL_GetTicks();
 
 	manager.Update(deltaTime);
-
-	std::cout << playerEntity.GetComponent<TransformComponent>()->position.x << std::endl;
-	std::cout << playerEntity.GetComponent<TransformComponent>()->position.y << std::endl;
 
 	HandleCameraMovement();
 	interactionManager->HandleInteractions();

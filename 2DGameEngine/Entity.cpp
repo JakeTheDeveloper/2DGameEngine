@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include "Game.h"
 
 Entity::Entity(EntityManager& manager): manager(manager) {
 	this->IsActive = true;

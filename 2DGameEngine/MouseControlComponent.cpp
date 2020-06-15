@@ -1,6 +1,7 @@
 #include <math.h>
 #include "MouseControlComponent.h"
 #include <iostream>
+#include "TileComponent.h"
 #include "Game.h"
 
 void MouseControlComponent::Initialize() {
@@ -44,7 +45,10 @@ MouseControlComponent::~MouseControlComponent() {
 }
 
 void MouseControlComponent::HandleMouseInput(SDL_Event event) {
-    dst = new glm::vec2(Game::cursor.GetComponent<TransformComponent>()->position.x, Game::cursor.GetComponent<TransformComponent>()->position.y);
+    auto tileX = static_cast<int>(Game::cursor.GetComponent<TransformComponent>()->position.x / (TILE_SIZE * MAP_SCALE));
+    auto tileY = static_cast<int>(Game::cursor.GetComponent<TransformComponent>()->position.y / (TILE_SIZE * MAP_SCALE));
+    auto tilePos = Game::worldManager->tiles[tileX][tileY]->GetComponent<TileComponent>()->position;
+    dst = new glm::vec2(tilePos.x, tilePos.y);
     isMoving = false;
     start = nullptr;
 }
