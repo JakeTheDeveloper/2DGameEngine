@@ -4,7 +4,10 @@
 const uint32_t WINDOW_WIDTH = 1200;
 const uint32_t WINDOW_HEIGHT = 800;
 const uint32_t MAP_SCALE = 2;
-const int TILESIZE = 32;
+const int TILE_SIZE = 32;
+const int MAP_SIZE_X = 25;
+const int MAP_SIZE_Y = 20;
+
 
 const float FPS = 60;
 const float FRAME_TARGET_TIME = 1000 / FPS;

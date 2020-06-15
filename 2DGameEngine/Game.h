@@ -9,6 +9,7 @@
 #include "EntityManager.h"
 #include "AssetManager.h"
 #include "CursorComponent.h"
+#include "WorldManager.h"
 
 // vvv Don't remove this otherwise SDL dies.
 #undef main
@@ -28,9 +29,10 @@ public:
 	static InteractionManager* interactionManager;
 	static InputManager* inputManager;
 	static AssetManager* assetManager;
+	static WorldManager* worldManager;
 	static SDL_Rect camera;
     static bool isRunning;
-    static Entity cursor;
+    static Entity& cursor;
     float deltaTime = 0.0f;
 	void LoadLevel(uint32_t levelNumber);
 	void Initialize(const int width, const int height);

@@ -10,10 +10,10 @@ public:
 	SDL_Rect srcRect; // source rectangle pointing at the png/spritesheet
 	SDL_Rect dstRect; // destination rectangle pointing at Game Window for drawing
 	glm::vec2 position;
-    glm::vec2& cursorPosition;
 
 	TileComponent(uint32_t srcRectX, uint32_t srcRectY, uint32_t x, uint32_t  y, uint32_t tileSize, int tileScale, std::string assetTextureId);
 	~TileComponent();
 	void Update(float deltaTime) override;
 	void Render() override;
-}; 
+	void DrawHighlight(SDL_Texture& hightlightTexture, SDL_Rect srcRect);
+};

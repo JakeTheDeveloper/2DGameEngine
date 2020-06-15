@@ -17,8 +17,6 @@ TileComponent::TileComponent(uint32_t srcRectX, uint32_t srcRectY, uint32_t x, u
 
 	position.x = x;
 	position.y = y;
-
-	cursorPosition = Game::cursor.GetComponent<TransformComponent>()->position;
 }
 
 TileComponent::~TileComponent() {
@@ -32,5 +30,8 @@ void TileComponent::Update(float deltaTime) {
 
 void TileComponent::Render() {
 	TextureManager::Draw(texture, srcRect, dstRect, SDL_FLIP_NONE);
-	if(cursorPosition)
+}
+
+void TileComponent::DrawHighlight(SDL_Texture& highlightTexture, SDL_Rect srcRect) {
+    TextureManager::Draw(&highlightTexture, srcRect, dstRect, SDL_FLIP_NONE);
 }
