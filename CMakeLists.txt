@@ -47,7 +47,9 @@ set(LUA_LIBS "${CMAKE_CURRENT_LIST_DIR}/extern/lua/lua53.lib")
 
 include_directories(extern)
 
-include_directories(${SDL2_INCLUDE_DIR} ${LUA_INCLUDE_DIR})
+set(LUA_BRIDGE_DIR "${CMAKE_CURRENT_LIST_DIR}/extern/LuaBridge")
+
+include_directories(${SDL2_INCLUDE_DIR} ${LUA_INCLUDE_DIR} ${LUA_BRIDGE_DIR})
 add_executable(2DGameEngine ${SRC_FILES} 2DGameEngine/MouseControlComponent.cpp 2DGameEngine/MouseControlComponent.h 2DGameEngine/InputManager.cpp 2DGameEngine/InputManager.h 2DGameEngine/CursorComponent.cpp 2DGameEngine/CursorComponent.h 2DGameEngine/WorldManager.cpp 2DGameEngine/WorldManager.h)
 target_link_libraries(2DGameEngine ${SDL2_LIBRARIES} ${LUA_LIBS})
 endif(WIN32)

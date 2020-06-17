@@ -1,7 +1,4 @@
-window = {
-    title = "Window v.0.1",
-    size = {
-        width = 400,
-        height = 500
-    }
-}
+sumNumbers = function(a,b)
+   game.printMessage("Called from lua!")
+    return a + b
+end
