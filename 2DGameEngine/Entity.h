@@ -11,6 +11,12 @@ struct EntityManager;
 struct Component;
 struct InteractionComponent;
 
+struct EntityParams{
+    EntityParams(){};
+    std::string name;
+    LayerType layer;
+};
+
 struct Entity {
 	std::vector<Component*> components;
 	std::map<const std::type_info*, Component*> componentTypeMap;
@@ -19,8 +25,7 @@ struct Entity {
 	LayerType layer;
 	FacingDirection facingDirection;
 	bool IsActive;
-	Entity(EntityManager& manager);
-	Entity(EntityManager& manager, std::string name, LayerType layerType);
+	Entity(std::string name, LayerType layer);
 	void Update(float deltaTime);
 	void Render();
 	void Destroy();

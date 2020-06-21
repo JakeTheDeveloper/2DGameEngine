@@ -1,6 +1,6 @@
 #include "KeyboardControlComponent.h"
 #include <iostream>
-KeyboardControlComponent::KeyboardControlComponent(InteractionManager* im) : interactionManager(im) {
+KeyboardControlComponent::KeyboardControlComponent() {
 	
 }
 
@@ -10,8 +10,10 @@ void KeyboardControlComponent::Initialize() {
 }
 
 void KeyboardControlComponent::Update(float deltaTime) {
-	ownerTransform->velocity.x += _xVel * deltaTime;
-	ownerTransform->velocity.y += _yVel * deltaTime;
+    if(ownerTransform != nullptr){
+        ownerTransform->velocity.x += _xVel * deltaTime;
+        ownerTransform->velocity.y += _yVel * deltaTime;
+    }
 }
 
 void KeyboardControlComponent::Render() {

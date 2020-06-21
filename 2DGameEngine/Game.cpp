@@ -10,17 +10,20 @@
 #include "ColliderComponent.h"
 #include "InputManager.h"
 #include "Terrain.h"
+#include "LuaBridge/Vector.h"
+#include <unordered_map>
 
 
-EntityManager manager;
 bool Game::isRunning = false;
+EntityManager Game::manager;
+LuaManager* Game::luaManager = new LuaManager();
 WorldManager* Game::worldManager = new WorldManager();
 InteractionManager* Game::interactionManager = new InteractionManager();
 InputManager* Game::inputManager = new InputManager();
 AssetManager* Game::assetManager = new AssetManager(&manager);
 SDL_Renderer* Game::renderer;
-Entity& playerEntity = manager.AddEntity("player", PLAYER_LAYER, true);
-Entity& Game::cursor = manager.AddEntity("cursor", LayerType::UI_LAYER, false);
+Entity& Game::cursor = Game::manager.AddEntity("cursor", LayerType::UI_LAYER);
+
 SDL_Rect Game::camera = { 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT };
 Terrain* terrain;
 
@@ -28,11 +31,15 @@ Game::Game() {
 	this->isRunning = false;
 }
 
+
 Game::~Game() {
     if(inputManager != nullptr)
 	    delete inputManager;
     if(assetManager != nullptr)
 	    delete assetManager;
+    if(luaManager != nullptr){
+        delete luaManager;
+    }
 }
 
 void Game::Initialize(const int width, const int height) {
@@ -61,31 +68,26 @@ void Game::Initialize(const int width, const int height) {
 	return;
 }
 
-
 void Game::LoadLevel(uint32_t level) {
-    auto& unit = manager.AddEntity("unit", PLAYER_LAYER, true);
-    manager.selectedEntities.push_back(&playerEntity);
-    manager.selectedEntities.push_back(&unit);
+    auto& unit = manager.AddEntity("unit", PLAYER_LAYER);
 
     assetManager->AddTexture("player", std::string("../assets/images/lowdetailman.png").c_str());
     assetManager->AddTexture("mouse_highlight", std::string("../assets/images/selection.png").c_str());
-    assetManager->AddTexture("unit", std::string("../assets/images/lowdetailman.png").c_str());
 	assetManager->AddTexture("enemy", std::string("../assets/images/Bigbox.png").c_str());
 	assetManager->AddTexture("jungle-tiletexture", std::string("../assets/tilemaps/jungle.png").c_str());
 
-    playerEntity.AddComponent<TransformComponent>(glm::vec2(0, 0), glm::vec2(0.f, 0.f), 64, 64, 1);
-	playerEntity.AddComponent<KeyboardControlComponent>(interactionManager);
-	playerEntity.AddComponent<SpriteComponent>("player", 1, 1, false,  false);
-//	playerEntity.AddComponent<ColliderComponent>("player", 1.f, 1.f, 64, 64);
-	playerEntity.AddComponent<InteractionComponent>(*interactionManager);
-    playerEntity.AddComponent<MouseControlComponent>();
+	Entity& playerEntity = Game::luaManager->CreateEntityFromScript("../assets/scripts/player.lua", "Entity", "player");
 
     unit.AddComponent<TransformComponent>(glm::vec2(50, 100), glm::vec2(0.f), 64, 64, 1);
-    unit.AddComponent<SpriteComponent>("unit", 1, 1, false, false);
+    unit.AddComponent<SpriteComponent>("enemy", 1, 1, false, false);
     unit.AddComponent<MouseControlComponent>();
 
     cursor.AddComponent<TransformComponent>(glm::vec2(0), glm::vec2(0.0f), 32, 32, 1);
     cursor.AddComponent<CursorComponent>();
+
+    luaManager->CreateEntityFromScript("../assets/scripts/camera.lua", "Entity", "Camera");
+
+    manager.selectedEntities.push_back(&playerEntity);
 
 	terrain = new Terrain("jungle-tiletexture", MAP_SCALE, TILE_SIZE);
 	terrain->LoadTerrain("../assets/tilemaps/jungle.map", MAP_SIZE_X, MAP_SIZE_Y);
@@ -146,13 +148,13 @@ void Game::Render() {
 }
 
 void Game::HandleCameraMovement() {
-	auto* mainPlayerTransform = playerEntity.GetComponent<TransformComponent>();
+//	auto* mainPlayerTransform = playerEntity.GetComponent<TransformComponent>();
 
 	auto tileMapWidth = 25 * 32;
 	auto tileMapHeight = 30 * 32; // Why is this 30 * 32?
 
-	camera.x = mainPlayerTransform->position.x - (WINDOW_WIDTH / 2);
-	camera.y = mainPlayerTransform->position.y - (WINDOW_HEIGHT / 2);
+//	camera.x = mainPlayerTransform->position.x - (WINDOW_WIDTH / 2);
+//	camera.y = mainPlayerTransform->position.y - (WINDOW_HEIGHT / 2);
 
 	// clamp
 	camera.x = camera.x < 0 ? 0 : camera.x;

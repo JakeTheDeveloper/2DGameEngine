@@ -23,12 +23,9 @@ void EntityManager::Render() {
 	Game::cursor.Render();
 }
 
-Entity &EntityManager::AddEntity(std::string entityName, LayerType layerType, bool interactable) {
-	auto* entity = new Entity(*this, entityName, layerType);
+Entity &EntityManager::AddEntity(std::string entityName, LayerType layerType) {
+	auto* entity = new Entity(entityName, layerType);
 	entities.emplace_back(entity);
-	if(interactable){
-	    interactableEntities.emplace_back(entity);
-	}
 	return *entity;
 }
 
@@ -167,12 +164,10 @@ std::vector<Entity*> EntityManager::GetEntitiesByLayer(LayerType layer) const {
 }
 
 EntityManager::~EntityManager() {
-    selectedEntities.clear();
-    interactableEntities.clear();
-
     if(entities.size() > 0) {
         for(auto e: entities)
             delete e;
-        interactableEntities.clear();
     }
+    selectedEntities.clear();
+    interactableEntities.clear();
 }

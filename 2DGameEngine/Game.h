@@ -10,6 +10,14 @@
 #include "AssetManager.h"
 #include "CursorComponent.h"
 #include "WorldManager.h"
+#include "LuaManager.h"
+extern "C" {
+#include "../extern/lua/lua.h"
+#include "../extern/lua/lauxlib.h"
+#include "../extern/lua/lualib.h"
+}
+
+#include "LuaBridge.h"
 
 // vvv Don't remove this otherwise SDL dies.
 #undef main
@@ -21,15 +29,17 @@ struct Game {
 private:
 	SDL_Window* window;
 	float _ticksLastFrame = 0.0f;
-	
+
 public:
 	Game();
 	~Game();
 	static SDL_Renderer* renderer;
+    static EntityManager manager;
 	static InteractionManager* interactionManager;
 	static InputManager* inputManager;
 	static AssetManager* assetManager;
 	static WorldManager* worldManager;
+	static LuaManager* luaManager;
 	static SDL_Rect camera;
     static bool isRunning;
     static Entity& cursor;

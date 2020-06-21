@@ -38,7 +38,7 @@ void Terrain::LoadTerrain(std::string filePath, uint32_t mapSizeX, uint32_t mapS
 }
 
 void Terrain::AddTile(uint32_t sourceX, uint32_t sourceY, uint32_t x, uint32_t y) {
-	Entity& newTile(manager.AddEntity("Tile", TILEMAP_LAYER, false));
+	Entity& newTile(Game::manager.AddEntity("Tile", TILEMAP_LAYER));
 	newTile.AddComponent<TileComponent>(sourceX, sourceY, x, y, _tileSize, _scale, _textureId);
 	Game::worldManager->tiles[x / (TILE_SIZE * MAP_SCALE)][y / (TILE_SIZE * MAP_SCALE)] = &newTile;
 }

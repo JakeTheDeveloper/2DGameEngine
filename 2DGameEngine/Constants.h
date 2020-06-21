@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+#include <unordered_map>
 const uint32_t WINDOW_WIDTH = 1200;
 const uint32_t WINDOW_HEIGHT = 800;
 const uint32_t MAP_SCALE = 2;
@@ -37,6 +37,14 @@ enum LayerType {
 	PLAYER_LAYER = 3,
 	PROJECTILE_LAYER = 4,
 	UI_LAYER = 5
+};
+
+static std::unordered_map<std::string,LayerType> const LayerTypeEnumTable = {
+        {"tilemap_layer", LayerType::TILEMAP_LAYER },
+        {"vegetation_layer", LayerType::VEGETATION_LAYER },
+        {"enemy_layer", LayerType::ENEMY_LAYER },
+        {"player_layer", LayerType::PLAYER_LAYER },
+        {"ui_layer", LayerType::UI_LAYER }
 };
 
 enum InteractionTag {
