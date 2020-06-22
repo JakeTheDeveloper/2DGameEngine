@@ -15,12 +15,15 @@
 
 
 bool Game::isRunning = false;
+
 EntityManager Game::manager;
 LuaManager* Game::luaManager = new LuaManager();
 WorldManager* Game::worldManager = new WorldManager();
 InteractionManager* Game::interactionManager = new InteractionManager();
 InputManager* Game::inputManager = new InputManager();
 AssetManager* Game::assetManager = new AssetManager(&manager);
+
+
 SDL_Renderer* Game::renderer;
 Entity& Game::cursor = Game::manager.AddEntity("cursor", LayerType::UI_LAYER);
 
@@ -45,27 +48,23 @@ Game::~Game() {
 void Game::Initialize(const int width, const int height) {
 	if(SDL_Init(SDL_INIT_VIDEO) != 0) {
 		throw std::runtime_error("Error initializing SDL...");
-		return;
 	}
 
 	window = SDL_CreateWindow("2D", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
 
 	if(!window) {
 		throw std::runtime_error("Error creating SDL window");
-		return;
 	}
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
 	if(!renderer) {
 		throw std::runtime_error("Error creating renderer");
-		return;
 	}
 
 	LoadLevel(0);
 
 	isRunning = true;
-	return;
 }
 
 void Game::LoadLevel(uint32_t level) {
@@ -74,14 +73,14 @@ void Game::LoadLevel(uint32_t level) {
 	assetManager->AddTexture("enemy", std::string("../assets/images/Bigbox.png").c_str());
 	assetManager->AddTexture("jungle-tiletexture", std::string("../assets/tilemaps/jungle.png").c_str());
 
-	auto& playerEntity = Game::luaManager->CreateEntityFromScript("../assets/scripts/player.lua", "player");
+	Game::luaManager->CreateEntityFromScript("../assets/scripts/player.lua", "player");
+    luaManager->CreateEntityFromScript("../assets/scripts/camera.lua", "camera");
 
     cursor.AddComponent<TransformComponent>(glm::vec2(0), glm::vec2(0.0f), 32, 32, 1);
     cursor.AddComponent<CursorComponent>();
 
-    luaManager->CreateEntityFromScript("../assets/scripts/camera.lua", "camera");
 
-    manager.selectedEntities.push_back(&playerEntity);
+    manager.selectedEntities.push_back(&manager.GetEntityByName("player"));
 
 	terrain = new Terrain("jungle-tiletexture", MAP_SCALE, TILE_SIZE);
 	terrain->LoadTerrain("../assets/tilemaps/jungle.map", MAP_SIZE_X, MAP_SIZE_Y);
@@ -113,16 +112,13 @@ void Game::Update() {
 //		SDL_Delay(delay);
 //	}
 
-	deltaTime = (SDL_GetTicks() - _ticksLastFrame) / 1000;
-	deltaTime = (deltaTime > 0.05) ? 0.05f : deltaTime;
+	deltaTime = ((SDL_GetTicks() - _ticksLastFrame) / 1000) > 0.05 ? 0.05 : ((SDL_GetTicks() - _ticksLastFrame) / 1000);
 	_ticksLastFrame = SDL_GetTicks();
 
 	manager.Update(deltaTime);
 
 	HandleCameraMovement();
 	interactionManager->HandleInteractions();
-//	manager.CheckCollisions();
-//	manager.HandleCollisions();
 }
 
 void Game::Render() {
