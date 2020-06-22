@@ -25,9 +25,8 @@ AssetManager* Game::assetManager = new AssetManager(&manager);
 
 
 SDL_Renderer* Game::renderer;
-Entity& Game::cursor = Game::manager.AddEntity("cursor", LayerType::UI_LAYER);
 
-SDL_Rect Game::camera = { 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT };
+SDL_Rect Game::Camera = {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT };
 Terrain* terrain;
 
 Game::Game() {
@@ -73,11 +72,11 @@ void Game::LoadLevel(uint32_t level) {
 	assetManager->AddTexture("enemy", std::string("../assets/images/Bigbox.png").c_str());
 	assetManager->AddTexture("jungle-tiletexture", std::string("../assets/tilemaps/jungle.png").c_str());
 
-	Game::luaManager->CreateEntityFromScript("../assets/scripts/player.lua", "player");
-    luaManager->CreateEntityFromScript("../assets/scripts/camera.lua", "camera");
-
-    cursor.AddComponent<TransformComponent>(glm::vec2(0), glm::vec2(0.0f), 32, 32, 1);
-    cursor.AddComponent<CursorComponent>();
+	luaManager->CreateEntityFromScript("../assets/scripts/player.lua");
+    luaManager->CreateEntityFromScript("../assets/scripts/camera.lua");
+    luaManager->CreateEntityFromScript("../assets/scripts/cursor.lua");
+//    cursor.AddComponent<TransformComponent>(glm::vec2(0), glm::vec2(0.0f), 32, 32, 1);
+//    cursor.AddComponent<CursorComponent>();
 
 
     manager.selectedEntities.push_back(&manager.GetEntityByName("player"));
@@ -147,10 +146,10 @@ void Game::HandleCameraMovement() {
 //	camera.y = mainPlayerTransform->position.y - (WINDOW_HEIGHT / 2);
 
 	// clamp
-	camera.x = camera.x < 0 ? 0 : camera.x;
-	camera.y = camera.y < 0 ? 0 : camera.y;
-	camera.x = camera.x > tileMapWidth / MAP_SCALE ? tileMapWidth / MAP_SCALE : camera.x;
-	camera.y = camera.y > tileMapHeight / MAP_SCALE ? tileMapHeight / MAP_SCALE : camera.y;
+	Camera.x = Camera.x < 0 ? 0 : Camera.x;
+    Camera.y = Camera.y < 0 ? 0 : Camera.y;
+    Camera.x = Camera.x > tileMapWidth / MAP_SCALE ? tileMapWidth / MAP_SCALE : Camera.x;
+    Camera.y = Camera.y > tileMapHeight / MAP_SCALE ? tileMapHeight / MAP_SCALE : Camera.y;
 }
 
 void Game::Destroy() {

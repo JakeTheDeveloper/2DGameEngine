@@ -20,7 +20,6 @@ void EntityManager::Render() {
 			entity->Render();
 		}
 	}
-	Game::cursor.Render();
 }
 
 Entity &EntityManager::AddEntity(std::string entityName, LayerType layerType) {

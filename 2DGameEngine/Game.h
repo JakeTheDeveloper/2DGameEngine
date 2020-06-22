@@ -40,9 +40,8 @@ public:
 	static AssetManager* assetManager;
 	static WorldManager* worldManager;
 	static LuaManager* luaManager;
-	static SDL_Rect camera;
+	static SDL_Rect Camera;
     static bool isRunning;
-    static Entity& cursor;
     float deltaTime = 0.0f;
 	void LoadLevel(uint32_t levelNumber);
 	void Initialize(const int width, const int height);

@@ -11,7 +11,7 @@ LuaManager::~LuaManager() {
     lua_close(L);
 }
 
-Entity& LuaManager::CreateEntityFromScript(std::string scriptName, std::string entityName) {
+Entity& LuaManager::CreateEntityFromScript(std::string scriptName) {
     luaL_dofile(L, scriptName.c_str());
     auto table_ref = luabridge::getGlobal(L, "Entity");
     if(table_ref.isTable()) {
@@ -25,7 +25,7 @@ Entity& LuaManager::CreateEntityFromScript(std::string scriptName, std::string e
             AddComponentsToEntity(entity, components);
             return entity;
         } else {
-            throw std::runtime_error("Unable to find layer type");
+            throw std::runtime_error("[LuaManager.cpp] Unable to find layer type");
         }
 
     } else {
@@ -54,8 +54,10 @@ void LuaManager::AddComponentsToEntity(Entity& e, luabridge::LuaRef componentTab
                         auto hasDirection = value["hasDirection"].cast<bool>();
                         auto isFixed = value["isFixed"].cast<bool>();
                         e.AddComponent<SpriteComponent>(textureId, numFrames, animationSpeed, hasDirection, isFixed);
+                    } else if(key.compare("CursorComponent") == 0) {
+                        e.AddComponent<CursorComponent>();
                     }else{
-                        throw std::runtime_error("Unable to find component: " + key);
+                            throw std::runtime_error("[LuaManager.cpp] Unable to find component: " + key);
                     }
                 }
             } catch (luabridge::LuaException ex){

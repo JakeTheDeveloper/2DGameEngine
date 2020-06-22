@@ -1,14 +1,14 @@
 Entity = {
-    name = "camera",
+    name = "cursor",
     layer = "ui_layer",
     components = {
         TransformComponent = {
             x = 0,
             y = 0,
-            width = 1200,
-            height = 800
+            width = 32,
+            height = 32
         },
-        KeyboardControlComponent = {
+        CursorComponent = {
 
         }
     }

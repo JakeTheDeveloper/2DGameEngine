@@ -18,8 +18,8 @@ void ColliderComponent::Update(float deltaTime) {
 	collider.y = static_cast<int>(transform->position.y);
 	collider.w = transform->width * transform->scale;
 	collider.h = transform->height * transform->scale;
-	dstRect.x = collider.x - Game::camera.x;
-	dstRect.y = collider.y - Game::camera.y;
+	dstRect.x = collider.x - Game::Camera.x;
+	dstRect.y = collider.y - Game::Camera.y;
 }
 
 void ColliderComponent::Render() {

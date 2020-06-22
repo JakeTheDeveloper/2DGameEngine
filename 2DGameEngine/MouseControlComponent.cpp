@@ -45,8 +45,9 @@ MouseControlComponent::~MouseControlComponent() {
 }
 
 void MouseControlComponent::HandleMouseInput(SDL_Event event) {
-    auto tileX = static_cast<int>(Game::cursor.GetComponent<TransformComponent>()->position.x / (TILE_SIZE * MAP_SCALE));
-    auto tileY = static_cast<int>(Game::cursor.GetComponent<TransformComponent>()->position.y / (TILE_SIZE * MAP_SCALE));
+    auto cursor = Game::manager.GetEntityByName("cursor");
+    auto tileX = static_cast<int>(cursor.GetComponent<TransformComponent>()->position.x / (TILE_SIZE * MAP_SCALE));
+    auto tileY = static_cast<int>(cursor.GetComponent<TransformComponent>()->position.y / (TILE_SIZE * MAP_SCALE));
     auto tilePos = Game::worldManager->tiles[tileX][tileY]->GetComponent<TileComponent>()->position;
     dst = new glm::vec2(tilePos.x, tilePos.y);
     isMoving = false;

@@ -58,8 +58,8 @@ void SpriteComponent::Update(float deltaTime) {
 	}
 	_srcRect.y = animationIndex * _attachedObjectTransform->scale;
 
-	_dstRect.x = static_cast<int>(_attachedObjectTransform->position.x) - (_isFixed ? 0 : Game::camera.x);
-	_dstRect.y = static_cast<int>(_attachedObjectTransform->position.y) - (_isFixed ? 0 : Game::camera.y);
+	_dstRect.x = static_cast<int>(_attachedObjectTransform->position.x) - (_isFixed ? 0 : Game::Camera.x);
+	_dstRect.y = static_cast<int>(_attachedObjectTransform->position.y) - (_isFixed ? 0 : Game::Camera.y);
 	_dstRect.w = _attachedObjectTransform->width * _attachedObjectTransform->scale;
 	_dstRect.h = _attachedObjectTransform->height * _attachedObjectTransform->scale;
 }
