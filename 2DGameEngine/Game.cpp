@@ -69,23 +69,17 @@ void Game::Initialize(const int width, const int height) {
 }
 
 void Game::LoadLevel(uint32_t level) {
-    auto& unit = manager.AddEntity("unit", PLAYER_LAYER);
-
     assetManager->AddTexture("player", std::string("../assets/images/lowdetailman.png").c_str());
     assetManager->AddTexture("mouse_highlight", std::string("../assets/images/selection.png").c_str());
 	assetManager->AddTexture("enemy", std::string("../assets/images/Bigbox.png").c_str());
 	assetManager->AddTexture("jungle-tiletexture", std::string("../assets/tilemaps/jungle.png").c_str());
 
-	Entity& playerEntity = Game::luaManager->CreateEntityFromScript("../assets/scripts/player.lua", "Entity", "player");
-
-    unit.AddComponent<TransformComponent>(glm::vec2(50, 100), glm::vec2(0.f), 64, 64, 1);
-    unit.AddComponent<SpriteComponent>("enemy", 1, 1, false, false);
-    unit.AddComponent<MouseControlComponent>();
+	auto& playerEntity = Game::luaManager->CreateEntityFromScript("../assets/scripts/player.lua", "player");
 
     cursor.AddComponent<TransformComponent>(glm::vec2(0), glm::vec2(0.0f), 32, 32, 1);
     cursor.AddComponent<CursorComponent>();
 
-    luaManager->CreateEntityFromScript("../assets/scripts/camera.lua", "Entity", "Camera");
+    luaManager->CreateEntityFromScript("../assets/scripts/camera.lua", "camera");
 
     manager.selectedEntities.push_back(&playerEntity);
 

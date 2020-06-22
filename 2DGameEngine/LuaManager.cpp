@@ -11,9 +11,9 @@ LuaManager::~LuaManager() {
     lua_close(L);
 }
 
-Entity& LuaManager::CreateEntityFromScript(std::string scriptName, std::string tableName, std::string entityName) {
+Entity& LuaManager::CreateEntityFromScript(std::string scriptName, std::string entityName) {
     luaL_dofile(L, scriptName.c_str());
-    auto table_ref = luabridge::getGlobal(L, tableName.c_str());
+    auto table_ref = luabridge::getGlobal(L, "Entity");
     if(table_ref.isTable()) {
         auto name = table_ref["name"].isString() ? table_ref["name"].tostring() : "NULL";
         auto layerStr = table_ref["layer"].isString() ? table_ref["layer"].tostring() : "NULL";
@@ -29,7 +29,7 @@ Entity& LuaManager::CreateEntityFromScript(std::string scriptName, std::string t
         }
 
     } else {
-        throw std::runtime_error(tableName + " is not a table!");
+        throw std::runtime_error("Entity is not a table!");
     }
 }
 
