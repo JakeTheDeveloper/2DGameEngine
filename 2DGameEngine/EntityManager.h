@@ -21,7 +21,4 @@ struct EntityManager {
 
 	uint32_t GetEntityCount() const;
 	Entity& GetEntityByName(std::string name) const;
-	void HandleCollisions();
-	void CheckCollisions();
-	void ClearCollisionQueue();	
 };

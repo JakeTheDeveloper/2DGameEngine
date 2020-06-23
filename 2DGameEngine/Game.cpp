@@ -7,7 +7,6 @@
 #include "SpriteComponent.h"
 #include "KeyboardControlComponent.h"
 #include "../extern/glm/glm.hpp"
-#include "ColliderComponent.h"
 #include "InputManager.h"
 #include "Terrain.h"
 #include "LuaBridge/Vector.h"
@@ -26,7 +25,7 @@ AssetManager* Game::assetManager = new AssetManager(&manager);
 
 SDL_Renderer* Game::renderer;
 
-SDL_Rect Game::Camera = {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT };
+//SDL_Rect Game::Camera = {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT };
 Terrain* terrain;
 
 Game::Game() {
@@ -75,9 +74,6 @@ void Game::LoadLevel(uint32_t level) {
 	luaManager->CreateEntityFromScript("../assets/scripts/player.lua");
     luaManager->CreateEntityFromScript("../assets/scripts/camera.lua");
     luaManager->CreateEntityFromScript("../assets/scripts/cursor.lua");
-//    cursor.AddComponent<TransformComponent>(glm::vec2(0), glm::vec2(0.0f), 32, 32, 1);
-//    cursor.AddComponent<CursorComponent>();
-
 
     manager.selectedEntities.push_back(&manager.GetEntityByName("player"));
 
@@ -136,6 +132,7 @@ void Game::Render() {
 	SDL_RenderPresent(renderer);
 }
 
+// TODO CameraComponent
 void Game::HandleCameraMovement() {
 //	auto* mainPlayerTransform = playerEntity.GetComponent<TransformComponent>();
 
