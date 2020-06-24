@@ -21,7 +21,7 @@ struct SpriteComponent: public Component {
     void Render() override;
 
 private:
-    TransformComponent* _attachedObjectTransform;
+    TransformComponent* _attachedObjectTransform = NULL;
     std::map<std::string, Animation> _animations;
     SDL_Rect _srcRect;
     SDL_Rect _dstRect;

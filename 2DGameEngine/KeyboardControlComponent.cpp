@@ -5,8 +5,7 @@ KeyboardControlComponent::KeyboardControlComponent() {
 }
 
 void KeyboardControlComponent::Initialize() {
-	ownerTransform = owner->GetComponent<TransformComponent>();
-	sprite = owner->GetComponent<SpriteComponent>();
+
 }
 
 void KeyboardControlComponent::Update(float deltaTime) {

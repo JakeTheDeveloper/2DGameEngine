@@ -11,7 +11,7 @@ LuaManager::~LuaManager() {
     lua_close(L);
 }
 
-Entity& LuaManager::CreateEntityFromScript(std::string scriptName) {
+void LuaManager::CreateEntityFromScript(std::string scriptName) {
     luaL_dofile(L, scriptName.c_str());
     auto table_ref = luabridge::getGlobal(L, "Entity");
     if(table_ref.isTable()) {
@@ -20,10 +20,9 @@ Entity& LuaManager::CreateEntityFromScript(std::string scriptName) {
         auto layerEnum = LayerTypeEnumTable.find(layerStr);
 
         if(layerEnum != LayerTypeEnumTable.end()){
-            auto& entity = Game::manager.AddEntity(name, layerEnum->second);
+            Game::manager.AddEntity(name, layerEnum->second);
             auto components = table_ref["components"];
-            AddComponentsToEntity(entity, components);
-            return entity;
+            AddComponentsToEntity(Game::manager.GetEntityByName(name), components);
         } else {
             throw std::runtime_error("[LuaManager.cpp] Unable to find layer type");
         }

@@ -134,19 +134,20 @@ void Game::Render() {
 
 // TODO CameraComponent
 void Game::HandleCameraMovement() {
-//	auto* mainPlayerTransform = playerEntity.GetComponent<TransformComponent>();
-
-	auto tileMapWidth = 25 * 32;
-	auto tileMapHeight = 30 * 32; // Why is this 30 * 32?
-
-//	camera.x = mainPlayerTransform->position.x - (WINDOW_WIDTH / 2);
-//	camera.y = mainPlayerTransform->position.y - (WINDOW_HEIGHT / 2);
-
-	// clamp
-	Camera.x = Camera.x < 0 ? 0 : Camera.x;
-    Camera.y = Camera.y < 0 ? 0 : Camera.y;
-    Camera.x = Camera.x > tileMapWidth / MAP_SCALE ? tileMapWidth / MAP_SCALE : Camera.x;
-    Camera.y = Camera.y > tileMapHeight / MAP_SCALE ? tileMapHeight / MAP_SCALE : Camera.y;
+//	auto* mainPlayerTransform = manager.GetEntityByName("player").GetComponent<TransformComponent>();
+//    auto camera = manager.GetEntityByName("camera").GetComponent<TransformComponent>()->position;
+//
+//    auto tileMapWidth = 25 * 32;
+//    auto tileMapHeight = 30 * 32; // Why is this 30 * 32?
+//
+//    camera.x = mainPlayerTransform->position.x - (WINDOW_WIDTH / 2);
+//    camera.y = mainPlayerTransform->position.y - (WINDOW_HEIGHT / 2);
+//
+//    // clamp
+//	camera.x = camera.x < 0 ? 0 : camera.x;
+//    camera.y = camera.y < 0 ? 0 : camera.y;
+//    camera.x = camera.x > tileMapWidth / MAP_SCALE ? tileMapWidth / MAP_SCALE : camera.x;
+//    camera.y = camera.y > tileMapHeight / MAP_SCALE ? tileMapHeight / MAP_SCALE : camera.y;
 }
 
 void Game::Destroy() {
