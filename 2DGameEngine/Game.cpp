@@ -85,15 +85,15 @@ void Game::ProcessInput() {
     inputManager->GetInputEvents();
     for(auto& event: inputManager->eventQueue){
         if(event->type == SDL_KEYDOWN || event->type == SDL_KEYUP){
-            for(auto& se: manager.selectedEntities){
-                if(se->HasComponent<KeyboardControlComponent>()){
-                    se->GetComponent<KeyboardControlComponent>()->HandleInput(*event);
+            for(auto& e: manager.entities){
+                if(e->HasComponent<KeyboardControlComponent>()){
+                    e->GetComponent<KeyboardControlComponent>()->HandleInput(*event);
                 }
             }
         } else if(event->type == SDL_MOUSEBUTTONDOWN){
-            for(auto& se: manager.selectedEntities) {
-                if (se->HasComponent<MouseControlComponent>())
-                    se->GetComponent<MouseControlComponent>()->HandleMouseInput(*event);
+            for(auto& e: manager.entities) {
+                if (e->HasComponent<MouseControlComponent>())
+                    e->GetComponent<MouseControlComponent>()->HandleMouseInput(*event);
             }
         }
     }

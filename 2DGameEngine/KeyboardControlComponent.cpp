@@ -9,10 +9,9 @@ void KeyboardControlComponent::Initialize() {
 }
 
 void KeyboardControlComponent::Update(float deltaTime) {
-    if(ownerTransform != nullptr){
-        ownerTransform->velocity.x += _xVel * deltaTime;
-        ownerTransform->velocity.y += _yVel * deltaTime;
-    }
+    auto ownerTransform = owner->GetComponent<TransformComponent>();
+    ownerTransform->velocity.x += _xVel * deltaTime;
+    ownerTransform->velocity.y += _yVel * deltaTime;
 }
 
 void KeyboardControlComponent::Render() {
@@ -20,6 +19,7 @@ void KeyboardControlComponent::Render() {
 }
 
 void KeyboardControlComponent::HandleInput(SDL_Event event) {
+    auto ownerTransform = owner->GetComponent<TransformComponent>();
     switch(event.type){
             case SDL_KEYDOWN:
                 switch (event.key.keysym.sym) {

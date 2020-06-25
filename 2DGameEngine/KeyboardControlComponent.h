@@ -10,7 +10,6 @@ private:
 	float _xVel = 0.f;
 	float _yVel = 0.f;
 public:
-	TransformComponent* ownerTransform = NULL;
 	SpriteComponent* sprite;
 	KeyboardControlComponent();
 	void HandleInput(SDL_Event event);

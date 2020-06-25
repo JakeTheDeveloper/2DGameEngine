@@ -11,19 +11,20 @@ void MouseControlComponent::Initialize() {
 void MouseControlComponent::Update(float deltaTime) {
     if(dst != nullptr){
         if(start == nullptr) {
-            start = &owner->GetComponent<TransformComponent>()->position;
+            start = new glm::vec2(owner->GetComponent<TransformComponent>()->position.x, owner->GetComponent<TransformComponent>()->position.y);
         }
 
         if(!isMoving) {
             isMoving = true;
             distance = glm::distance(*start, *dst);
             direction = glm::normalize(*dst - *start);
-            owner->GetComponent<TransformComponent>()->position = *start;
+//            owner->GetComponent<TransformComponent>()->position = *start;
         }
 
         if(isMoving){
             auto& ownerPosition = owner->GetComponent<TransformComponent>()->position;
             ownerPosition += direction * 150.f * deltaTime;
+            std::cout << ownerPosition.x << std::endl;
             if(glm::distance(*start, ownerPosition) >= distance){
                 ownerPosition = *dst;
                 dst = nullptr;
