@@ -1,6 +1,6 @@
 #include "KeyboardControlComponent.h"
 #include <iostream>
-KeyboardControlComponent::KeyboardControlComponent() {
+KeyboardControlComponent::KeyboardControlComponent(int movementSpeed) : movementSpeed(movementSpeed) {
 	
 }
 
@@ -24,16 +24,16 @@ void KeyboardControlComponent::HandleInput(SDL_Event event) {
             case SDL_KEYDOWN:
                 switch (event.key.keysym.sym) {
                     case SDLK_w:
-                        ownerTransform->velocity.y = -10;
+                        ownerTransform->velocity.y = -movementSpeed;
                         break;
                     case SDLK_a:
-                        ownerTransform->velocity.x = -10;
+                        ownerTransform->velocity.x = -movementSpeed;
                         break;
                     case SDLK_s:
-                        ownerTransform->velocity.y = 10;
+                        ownerTransform->velocity.y = movementSpeed;
                         break;
                     case SDLK_d:
-                        ownerTransform->velocity.x = 10;
+                        ownerTransform->velocity.x = movementSpeed;
                         break;
                     case SDLK_e:
 

@@ -9,7 +9,7 @@ Entity = {
             height = 800
         },
         KeyboardControlComponent = {
-
+            movementSpeed = 1,
         }
     }
 }

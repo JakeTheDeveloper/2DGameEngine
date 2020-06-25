@@ -10,8 +10,8 @@ private:
 	float _xVel = 0.f;
 	float _yVel = 0.f;
 public:
-	SpriteComponent* sprite;
-	KeyboardControlComponent();
+	int movementSpeed;
+	KeyboardControlComponent(int movementSpeed);
 	void HandleInput(SDL_Event event);
 	void Initialize() override;
 	void Update(float deltaTime) override;

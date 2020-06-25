@@ -42,7 +42,8 @@ void LuaManager::AddComponentsToEntity(Entity& e, luabridge::LuaRef componentTab
                         auto position = glm::vec2(value["x"].cast<int>(), value["y"].cast<int>());
                         e.AddComponent<TransformComponent>(position, glm::vec2(0.f), value["width"].cast<int>(), value["height"].cast<int>(), 1);
                     } else if(key.compare("KeyboardControlComponent") == 0) {
-                        e.AddComponent<KeyboardControlComponent>();
+                        auto movementSpeed = value["movementSpeed"].cast<int>();
+                        e.AddComponent<KeyboardControlComponent>(movementSpeed);
                     } else if(key.compare("MouseControlComponent") == 0){
                         e.AddComponent<MouseControlComponent>();
                     } else if(key.compare("SpriteComponent") == 0){
