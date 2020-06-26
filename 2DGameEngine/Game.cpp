@@ -111,6 +111,7 @@ void Game::Update() {
 	_ticksLastFrame = SDL_GetTicks();
 
 	manager.Update(deltaTime);
+	std::cout << manager.GetEntityByName("camera").GetComponent<TransformComponent>()->position.x << std::endl;
 
 	HandleCameraMovement();
 	interactionManager->HandleInteractions();
