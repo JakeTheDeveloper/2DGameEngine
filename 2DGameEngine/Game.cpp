@@ -70,10 +70,9 @@ void Game::LoadLevel(uint32_t level) {
     assetManager->AddTexture("mouse_highlight", std::string("../assets/images/selection.png").c_str());
 	assetManager->AddTexture("enemy", std::string("../assets/images/Bigbox.png").c_str());
 	assetManager->AddTexture("jungle-tiletexture", std::string("../assets/tilemaps/jungle.png").c_str());
+    assetManager->AddTexture("table", std::string("../assets/images/table.png").c_str());
 
-	luaManager->CreateEntityFromScript("../assets/scripts/player.lua");
-    luaManager->CreateEntityFromScript("../assets/scripts/camera.lua");
-    luaManager->CreateEntityFromScript("../assets/scripts/cursor.lua");
+	luaManager->LoadEntitesFromScript("../assets/scripts/entities.lua");
 
     manager.selectedEntities.push_back(&manager.GetEntityByName("player"));
 
@@ -111,7 +110,6 @@ void Game::Update() {
 	_ticksLastFrame = SDL_GetTicks();
 
 	manager.Update(deltaTime);
-	std::cout << manager.GetEntityByName("camera").GetComponent<TransformComponent>()->position.x << std::endl;
 
 	HandleCameraMovement();
 	interactionManager->HandleInteractions();

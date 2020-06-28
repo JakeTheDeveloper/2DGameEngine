@@ -1,6 +1,7 @@
 #include "LuaManager.h"
 #include "Game.h"
 #include "KeyboardControlComponent.h"
+#include "Vector.h"
 
 LuaManager::LuaManager() {
     L = luaL_newstate();
@@ -84,4 +85,17 @@ std::unordered_map<std::string, luabridge::LuaRef> LuaManager::getKeyValueMap(co
 
     lua_pop(state, 1); // pop table
     return result;
+}
+
+void LuaManager::LoadEntitesFromScript(std::string entitiesScript) {
+    luaL_dofile(L, entitiesScript.c_str());
+    auto entitie_tableRef = luabridge::getGlobal(L, "Entities");
+    if(entitie_tableRef.isTable()){
+        auto entities  = entitie_tableRef.cast<std::vector<std::string>>();
+        for(auto entitiyScript: entities){
+            CreateEntityFromScript(entitiyScript);
+        }
+    }else{
+        throw std::runtime_error("Could not loading entities from script");
+    }
 }

@@ -24,7 +24,6 @@ void MouseControlComponent::Update(float deltaTime) {
         if(isMoving){
             auto& ownerPosition = owner->GetComponent<TransformComponent>()->position;
             ownerPosition += direction * 150.f * deltaTime;
-            std::cout << ownerPosition.x << std::endl;
             if(glm::distance(*start, ownerPosition) >= distance){
                 ownerPosition = *dst;
                 dst = nullptr;
@@ -50,6 +49,19 @@ void MouseControlComponent::HandleMouseInput(SDL_Event event) {
     auto cursor = Game::manager.GetEntityByName("cursor");
     auto tileX = static_cast<int>(cursor.GetComponent<TransformComponent>()->position.x / (TILE_SIZE * MAP_SCALE));
     auto tileY = static_cast<int>(cursor.GetComponent<TransformComponent>()->position.y / (TILE_SIZE * MAP_SCALE));
+
+    if(tileX < 0){
+        tileX = 0;
+    } else {
+        tileX = tileX > MAP_SIZE_X - 1 ? MAP_SIZE_X : tileX;
+    }
+
+    if(tileY < 0){
+        tileY = 0;
+    }else{
+        tileY = tileY > MAP_SIZE_Y - 1 ? MAP_SIZE_Y : tileY;
+    }
+
     auto tilePos = Game::worldManager->tiles[tileX][tileY]->GetComponent<TileComponent>()->position;
     dst = new glm::vec2(tilePos.x, tilePos.y);
     isMoving = false;

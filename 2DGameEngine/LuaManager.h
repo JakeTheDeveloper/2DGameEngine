@@ -14,6 +14,7 @@ struct LuaManager {
     LuaManager();
     ~LuaManager();
     void CreateEntityFromScript(std::string scriptName);
+    void LoadEntitesFromScript(std::string entitiesScript);
     std::unordered_map<std::string, luabridge::LuaRef> getKeyValueMap(const luabridge::LuaRef& table);
 
 private:

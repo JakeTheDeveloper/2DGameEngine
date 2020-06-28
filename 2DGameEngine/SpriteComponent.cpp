@@ -20,16 +20,14 @@ SpriteComponent::SpriteComponent(std::string id, uint32_t numFrames, uint32_t an
 		_animations.emplace("LeftAnimation", leftAnimation);
 		_animations.emplace("UpAnimation", upAnimation);
 
-        animationIndex = 0;
         currentAnimationName = "DownAnimation";
 	} else {
 		auto singleAnimation = Animation(0, numFrames, animationSpeed);
 		_animations.emplace("Single Animation", singleAnimation);
-        animationIndex = 0;
         currentAnimationName = "Single Animation";
 	}
-	
-	Play();
+
+    Play();
 	SetTexture(id);
 }
 
@@ -67,7 +65,5 @@ void SpriteComponent::Update(float deltaTime) {
 }
 
 void SpriteComponent::Render() {
-    if(owner->Name.compare("player") == 0){
-        TextureManager::Draw(texture, _srcRect, _dstRect, SpriteFlip);
-    }
+    TextureManager::Draw(texture, _srcRect, _dstRect, SpriteFlip);
 }
