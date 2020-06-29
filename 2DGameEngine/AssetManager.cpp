@@ -1,4 +1,5 @@
 #include "AssetManager.h"
+#include "LuaBridge.h"
 
 AssetManager::AssetManager(EntityManager* manager): manager(manager) {
 	

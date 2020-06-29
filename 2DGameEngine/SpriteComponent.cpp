@@ -6,8 +6,9 @@ SpriteComponent::SpriteComponent(const char* filePath) {
 
 SpriteComponent::SpriteComponent(std::string id, uint32_t numFrames, uint32_t animationSpeed, bool hasDirections, bool isFixed)
 : _numFrames(numFrames), _animationSpeed(animationSpeed), _isFixed(isFixed){
-	_isAnimated = true;
 
+    _isAnimated = animationSpeed == 0;
+    _srcRect.x = 0;
 	if(hasDirections) {
 		auto downAnimation = Animation(0, numFrames, animationSpeed);
 		auto rightAnimation = Animation(1, numFrames, animationSpeed);
@@ -19,16 +20,14 @@ SpriteComponent::SpriteComponent(std::string id, uint32_t numFrames, uint32_t an
 		_animations.emplace("LeftAnimation", leftAnimation);
 		_animations.emplace("UpAnimation", upAnimation);
 
-        animationIndex = 0;
         currentAnimationName = "DownAnimation";
 	} else {
 		auto singleAnimation = Animation(0, numFrames, animationSpeed);
 		_animations.emplace("Single Animation", singleAnimation);
-        animationIndex = 0;
         currentAnimationName = "Single Animation";
 	}
-	
-	Play();
+
+    Play();
 	SetTexture(id);
 }
 
@@ -44,26 +43,27 @@ void SpriteComponent::SetTexture(std::string assetTextureId) {
 }
 
 void SpriteComponent::Initialize() {
-	_attachedObjectTransform = owner->GetComponent<TransformComponent>();
-	_srcRect.x = 0;
-	_srcRect.y = 0;
-	_srcRect.w = _attachedObjectTransform->width;
-	_srcRect.h = _attachedObjectTransform->height;
+
 }
 
 void SpriteComponent::Update(float deltaTime) {
+    auto objectTransform = owner->GetComponent<TransformComponent>();
 	// Todo: this is important for animation. Come back to this
 	if(_isAnimated) {
 		_srcRect.x = _srcRect.w * static_cast<int>((SDL_GetTicks() / _animationSpeed) % _numFrames);
 	}
-	_srcRect.y = animationIndex * _attachedObjectTransform->scale;
+	_srcRect.w = objectTransform->width;
+    _srcRect.h = objectTransform->height;
+	_srcRect.y = animationIndex * objectTransform->scale;
 
-	_dstRect.x = static_cast<int>(_attachedObjectTransform->position.x) - (_isFixed ? 0 : Game::camera.x);
-	_dstRect.y = static_cast<int>(_attachedObjectTransform->position.y) - (_isFixed ? 0 : Game::camera.y);
-	_dstRect.w = _attachedObjectTransform->width * _attachedObjectTransform->scale;
-	_dstRect.h = _attachedObjectTransform->height * _attachedObjectTransform->scale;
+	auto camera = Game::manager.GetEntityByName("camera").GetComponent<TransformComponent>()->position;
+
+	_dstRect.x = static_cast<int>(objectTransform->position.x) - (_isFixed ? 0 : camera.x);
+	_dstRect.y = static_cast<int>(objectTransform->position.y) - (_isFixed ? 0 : camera.y);
+	_dstRect.w = objectTransform->width * objectTransform->scale;
+	_dstRect.h = objectTransform->height * objectTransform->scale;
 }
 
 void SpriteComponent::Render() {
-	TextureManager::Draw(texture, _srcRect, _dstRect, SpriteFlip);
+    TextureManager::Draw(texture, _srcRect, _dstRect, SpriteFlip);
 }

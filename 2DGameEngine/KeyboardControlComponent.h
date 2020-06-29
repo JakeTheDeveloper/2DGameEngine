@@ -10,10 +10,8 @@ private:
 	float _xVel = 0.f;
 	float _yVel = 0.f;
 public:
-	InteractionManager* interactionManager;
-	TransformComponent* ownerTransform;
-	SpriteComponent* sprite;
-	KeyboardControlComponent(InteractionManager* im);
+	int movementSpeed;
+	KeyboardControlComponent(int movementSpeed);
 	void HandleInput(SDL_Event event);
 	void Initialize() override;
 	void Update(float deltaTime) override;

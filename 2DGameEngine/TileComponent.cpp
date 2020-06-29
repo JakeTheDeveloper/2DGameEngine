@@ -24,8 +24,9 @@ TileComponent::~TileComponent() {
 }
 
 void TileComponent::Update(float deltaTime) {
-	dstRect.x = position.x - Game::camera.x;
-	dstRect.y = position.y - Game::camera.y;
+    auto camera = Game::manager.GetEntityByName("camera").GetComponent<TransformComponent>()->position;
+	dstRect.x = position.x - camera.x;
+	dstRect.y = position.y - camera.y;
 }
 
 void TileComponent::Render() {

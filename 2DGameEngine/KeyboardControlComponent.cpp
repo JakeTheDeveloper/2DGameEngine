@@ -1,17 +1,17 @@
 #include "KeyboardControlComponent.h"
 #include <iostream>
-KeyboardControlComponent::KeyboardControlComponent(InteractionManager* im) : interactionManager(im) {
+KeyboardControlComponent::KeyboardControlComponent(int movementSpeed) : movementSpeed(movementSpeed) {
 	
 }
 
 void KeyboardControlComponent::Initialize() {
-	ownerTransform = owner->GetComponent<TransformComponent>();
-	sprite = owner->GetComponent<SpriteComponent>();
+
 }
 
 void KeyboardControlComponent::Update(float deltaTime) {
-	ownerTransform->velocity.x += _xVel * deltaTime;
-	ownerTransform->velocity.y += _yVel * deltaTime;
+    auto ownerTransform = owner->GetComponent<TransformComponent>();
+    ownerTransform->velocity.x += _xVel * deltaTime;
+    ownerTransform->velocity.y += _yVel * deltaTime;
 }
 
 void KeyboardControlComponent::Render() {
@@ -19,20 +19,21 @@ void KeyboardControlComponent::Render() {
 }
 
 void KeyboardControlComponent::HandleInput(SDL_Event event) {
+    auto ownerTransform = owner->GetComponent<TransformComponent>();
     switch(event.type){
             case SDL_KEYDOWN:
                 switch (event.key.keysym.sym) {
                     case SDLK_w:
-                        ownerTransform->velocity.y = -10;
+                        ownerTransform->velocity.y = -movementSpeed;
                         break;
                     case SDLK_a:
-                        ownerTransform->velocity.x = -10;
+                        ownerTransform->velocity.x = -movementSpeed;
                         break;
                     case SDLK_s:
-                        ownerTransform->velocity.y = 10;
+                        ownerTransform->velocity.y = movementSpeed;
                         break;
                     case SDLK_d:
-                        ownerTransform->velocity.x = 10;
+                        ownerTransform->velocity.x = movementSpeed;
                         break;
                     case SDLK_e:
 

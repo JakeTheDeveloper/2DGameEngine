@@ -3,6 +3,7 @@
 #include <string>
 #include "TextureManager.h"
 #include "EntityManager.h"
+#include "Game.h"
 
 struct AssetManager {
 private:

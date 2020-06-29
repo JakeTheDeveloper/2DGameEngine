@@ -1,11 +1,7 @@
 #include "Entity.h"
 #include "Game.h"
 
-Entity::Entity(EntityManager& manager): manager(manager) {
-	this->IsActive = true;
-}
-
-Entity::Entity(EntityManager& manager, std::string name, LayerType layerType) : manager(manager), Name(name), layer(layerType) {
+Entity::Entity(std::string name, LayerType layer) : manager(Game::manager), Name(name), layer(layer) {
 	this->IsActive = true;
 }
 
