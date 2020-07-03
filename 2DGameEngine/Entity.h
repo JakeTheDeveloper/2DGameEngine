@@ -19,7 +19,7 @@ struct EntityParams{
 
 struct Entity {
 	std::vector<Component*> components;
-	std::map<const std::type_info*, Component*> componentTypeMap;
+	std::unordered_map<const std::type_info*, Component*> componentTypeMap;
 	EntityManager& manager;
 	std::string Name;
 	LayerType layer;
